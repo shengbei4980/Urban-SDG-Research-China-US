@@ -1,0 +1,10 @@
+numpy
+pandas
+matplotlib
+scipy
+Pillow
+# 地图分图3a另需以下地理绘图依赖
+geopandas
+pyproj
+shapely
+pyogrio

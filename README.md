@@ -17,7 +17,7 @@ Urban-SDG-Research-China-US/
 │   ├── figure4/
 │   └── figure5/
 ├── supplementary_figures/
-│   ├── figure_s1/          # LLM screening and coding workflow PNG
+│   ├── figure_s1/          # Current Supplementary Fig. 1
 │   ├── figure_s2/
 │   ├── figure_s3/
 │   ├── figure_s4/
@@ -33,7 +33,7 @@ Urban-SDG-Research-China-US/
 
 Each figure folder follows the author's original folder hierarchy. Its code, datasets, exported figures, notes, reviews, and historical versions remain together. A figure without subpanels remains a single folder. Existing flat layouts and intermediate subdirectories are retained. English directory names include `code`, `data`, `outputs`, `figures`, `notes`, `review`, and `checks`; no common internal layout is imposed on every figure. Empty source directories are retained locally but are not tracked by Git.
 
-Figure folders retain the source archive's numbering. Some archived filenames refer to an earlier figure number. For example, current Figure 1b uses original Figure 1e materials; current Figures 4b, 4c, and 4d use original Figures 4d, 4b, and 4c. The LLM screening and coding workflow diagram is provided as a PNG in [`supplementary_figures/figure_s1/LLM_workflow.png`](supplementary_figures/figure_s1/LLM_workflow.png).
+Main-figure folders retain the source archive's numbering. For example, current Figure 1b uses original Figure 1e materials; current Figures 4b, 4c, and 4d use original Figures 4d, 4b, and 4c. Supplementary-figure folders now follow the current supplementary-material numbering, S1-S9; the screening and coding workflow is [Supplementary Fig. 9](supplementary_figures/figure_s9/outputs/Supplementary_Fig_9.png). See the [supplementary figure index and reproduction guide](supplementary_figures/README.md).
 
 ## Coding and raw retrieval data
 
@@ -50,7 +50,7 @@ Raw retrieval records and the coded study sample represent different stages of p
 
 ## Code and provenance
 
-Scientific scripts remain within their original figure folders. Filename, local-module, and directory references affected by English renaming were updated where identifiable. Scientific estimates, data tables, and figure contents were not recomputed or changed during restructuring. Some legacy scripts still depend on original machine-specific paths, upstream modules, or software that were not supplied; the archive is not represented as a validated single-command workflow. Consult the relevant script and its original notes before rerunning it.
+Scientific scripts remain within their original figure folders. Filename, local-module, and directory references affected by English renaming were updated where identifiable. The supplementary-figure archive was synchronized with the revised source folders on 11 October 2026. Its scientific data tables and figure payloads were copied without recomputation or resampling. English renaming changes path references and documentation only. Some legacy scripts still depend on original machine-specific paths, upstream modules, or software that were not supplied; the archive is not represented as a validated single-command workflow. Consult the relevant script and its original notes before rerunning it.
 
 The detailed filename mapping, restructuring tools, and upload-verification reports are maintained locally by the author, outside this repository. Earlier repository organization remains recoverable from Git history.
 

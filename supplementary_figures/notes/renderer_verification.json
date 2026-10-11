@@ -1,0 +1,75 @@
+[
+  {
+    "panel": "1",
+    "entry": "图S1/绘图工程/代码/plot_supplementary_fig_1.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  },
+  {
+    "panel": "2",
+    "entry": "图S2/绘图工程/图例/代码/build_Supplementary_Fig_2_exact_legend.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  },
+  {
+    "panel": "3a",
+    "entry": "图S3/图S3a/代码/绘制Supplementary_Fig_3a_机构城市相似性.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\geogis\\python.exe"
+  },
+  {
+    "panel": "3b",
+    "entry": "图S3/图S3b/代码/绘制Supplementary_Fig_3b_环形矩阵与城市聚类树.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe",
+    "note": "Windows DLL路径已修复，重新运行通过。"
+  },
+  {
+    "panel": "4a",
+    "entry": "图S4/图S4a/代码/绘制Supplementary_Fig_4a_四列上下对齐.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  },
+  {
+    "panel": "4b",
+    "entry": "图S4/图S4b/代码/绘制Supplementary_Fig_4b_六领域知识任务差异.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  },
+  {
+    "panel": "5",
+    "entry": "图S5/绘图工程/代码/绘制Supplementary_Fig_5_统一画框与Figure1a配色.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  },
+  {
+    "panel": "6a",
+    "entry": "图S6/图S6a/代码/plot_lorenz.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  },
+  {
+    "panel": "6b",
+    "entry": "图S6/图S6b/code/plot_supplementary_fig_6b.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  },
+  {
+    "panel": "7a",
+    "entry": "图S7/图S7a/代码/Supplementary_Fig_7a_浅色桑基与末端阶段组.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  },
+  {
+    "panel": "7b",
+    "entry": "图S7/图S7b/代码/Supplementary_Fig_7b_离散镜像山脊_重构.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  },
+  {
+    "panel": "8",
+    "entry": "图S8/绘图工程/代码/绘图源码_统一配色.py",
+    "exit_code": 0,
+    "runtime": "D:\\xuexi\\canshuhua\\anaconda\\Anaconda\\envs\\py311\\python.exe"
+  }
+]

@@ -1,0 +1,1217 @@
+[
+  {
+    "path": "README.md",
+    "bytes": 3021,
+    "sha256": "39f8b4f5f07aba9b5cf30a223e1ce907f505662542cb0729c60febfaea3f0fc2"
+  },
+  {
+    "path": "requirements.txt",
+    "bytes": 127,
+    "sha256": "47e9c52b46b36ce5576c0db72a3eda6736a1e029239f78d8b5e547808f3cc895"
+  },
+  {
+    "path": "图S1\\README.md",
+    "bytes": 573,
+    "sha256": "f06e41b61ba10706741b446a1b061ebc4e0033cd3dd2a14eb00d58395f378682"
+  },
+  {
+    "path": "图S1\\出图\\Supplementary_Fig_1.png",
+    "bytes": 210950,
+    "sha256": "ecb8063299374035e3fba52a66d93430a6c72c8c9457d5f0c963d3ea840aa7fb"
+  },
+  {
+    "path": "图S1\\绘图工程\\代码\\plot_supplementary_fig_1.py",
+    "bytes": 20811,
+    "sha256": "624d2f64bcd41310f60db3d4965e35e86366ffa1859fda6fb561c992b93853b3"
+  },
+  {
+    "path": "图S1\\绘图工程\\出图\\Supplementary_Fig_1_源程序出图.pdf",
+    "bytes": 73708,
+    "sha256": "805b97bf5778f9a8f1962d64eb615edb0f4ef5e9532763edd018504699ec3eb7"
+  },
+  {
+    "path": "图S1\\绘图工程\\出图\\Supplementary_Fig_1_源程序出图.svg",
+    "bytes": 309244,
+    "sha256": "5cbd00b2b8e4955591cbe3c6877c064f7ab82a1763fc603f908765d6fe8eeb84"
+  },
+  {
+    "path": "图S1\\绘图工程\\出图\\Supplementary_Fig_1_源程序出图.tiff",
+    "bytes": 2474394,
+    "sha256": "9dc86772607645e416d4f9668bbddf3039e0d0feb14f8d0622e3b0665235b94e"
+  },
+  {
+    "path": "图S1\\绘图工程\\出图\\Supplementary_Fig_1_源程序出图_preview.png",
+    "bytes": 330190,
+    "sha256": "ec6bbdd2fa72802f82843f17b8d203852c8cd0dd51716dac146ff622e5a2a293"
+  },
+  {
+    "path": "图S1\\绘图工程\\数据\\Supplementary_Fig_1_code_mapping.csv",
+    "bytes": 6075,
+    "sha256": "beb65df24c5b0633dcc339129b30e3529acc206526a9deb63f3a4b09720895a9"
+  },
+  {
+    "path": "图S1\\绘图工程\\数据\\Supplementary_Fig_1_semantic_composition.csv",
+    "bytes": 61849,
+    "sha256": "631fac4235d4977556de784995b087e925d9b492858e0add3c5127fae616b954"
+  },
+  {
+    "path": "图S1\\绘图工程\\数据\\Supplementary_Fig_1_source_data.csv",
+    "bytes": 3169,
+    "sha256": "6a49496b1fe86ff4a1de9e82e6f20f2ebc90a994e5a4645fa25219afbe2b57ee"
+  },
+  {
+    "path": "图S2\\README.md",
+    "bytes": 627,
+    "sha256": "b50153d449d7c62e510dd7c00fa624d82d03f78fb922b84c6755545d39e4c0d5"
+  },
+  {
+    "path": "图S2\\出图\\Supplementary_Fig_2.png",
+    "bytes": 2970479,
+    "sha256": "755bc19a3d44ff62dc4c96961d97abc63ad3708ea4bece77a047e5c591894911"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\notes.md",
+    "bytes": 1672,
+    "sha256": "b1f897b753a0fd4d7f4726b0d6dc83c8909dfe91aee279de3bf4847f79147a1c"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\task_plan.md",
+    "bytes": 2178,
+    "sha256": "fa811ba8fdc5af7359b57cba42184a39a86752a8c07ac166e84b161820249e1d"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\代码\\build_Supplementary_Fig_2_exact_legend.py",
+    "bytes": 38905,
+    "sha256": "2b0da0c3f49a6e14d3996208c69db4672197fc2f3c06f24d5e2a98a2c598f98d"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\代码\\test_Supplementary_Fig_2_exact_legend.py",
+    "bytes": 5282,
+    "sha256": "481d046efeed09da54081ad8ac17451b5b5a17df93ac37e4f2ec40cbfbf2f209"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\图\\Supplementary_Fig_2_legend_exact_transparent.pdf",
+    "bytes": 53387,
+    "sha256": "5a4d46eeb12f6c1e1cebdfdb6095fafa66c7a6f92bdbb61b194f0d21f99c09d0"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\图\\Supplementary_Fig_2_legend_exact_transparent.png",
+    "bytes": 368688,
+    "sha256": "f614d471de643a5bcbc7ed5a893221dd9379c42f167ad433381a39405a414f46"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\图\\Supplementary_Fig_2_legend_exact_transparent.svg",
+    "bytes": 26044,
+    "sha256": "35eb384db772b9e467ec14a9e0ace5a9cad45614c1f4c0598ab77a40c434e2b4"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\图\\Supplementary_Fig_2_legend_exact_white.pdf",
+    "bytes": 53350,
+    "sha256": "5e853d40f0721aaaa5ae887e5e3087d98f7963b629bc76cedfd61882ffb9d42d"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\图\\Supplementary_Fig_2_legend_exact_white.png",
+    "bytes": 487043,
+    "sha256": "9c46d29936ac480e3591abdb854f9dd9a910436bdef4268e5a7b63b16e4181f7"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\图\\Supplementary_Fig_2_legend_exact_white.svg",
+    "bytes": 26030,
+    "sha256": "b4aa22822559339c517b23db32fa993157afd79e00de474b588b1d3f090ab404"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\图\\Supplementary_Fig_2_legend_exact_white.tiff",
+    "bytes": 701548,
+    "sha256": "30a6eeb47ec00ff7ea0936fa58244249cc358198715a3f6612726608d3d550f1"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\图\\Supplementary_Fig_2_with_exact_legend_preview.png",
+    "bytes": 936107,
+    "sha256": "4b93d95aaa34495aa125c25f4df82d9a71ec1c9294690426ab8c0d1000fa5e5c"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\数据\\Supplementary_Fig_2_edge_visual_encoding.csv",
+    "bytes": 1124,
+    "sha256": "07b1f7c8f20e678f53ea753e4331c7cd0017820cc5b978e608c7df7e81a7c84a"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\数据\\Supplementary_Fig_2_edge_width_reference.csv",
+    "bytes": 231,
+    "sha256": "c3f073065ace70bfd46e6eed2ba2f2e453b44c2416f9dcf0f56a0be798fac7c4"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\数据\\Supplementary_Fig_2_exact_mapping_summary.json",
+    "bytes": 7637,
+    "sha256": "8202dc7cae231fa23a6635151c3e794074bad91b02ef313aba9d3e47d6d0d3c5"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\数据\\Supplementary_Fig_2_node_size_reference.csv",
+    "bytes": 444,
+    "sha256": "b3c5a779517a43cfb3e6a0db5a8b99cdc84c2b338926e752204415d0b0ca3fe9"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\数据\\Supplementary_Fig_2_node_visual_encoding.csv",
+    "bytes": 992,
+    "sha256": "3c6f6d1cf48252aa59dd51155c379dc7a467670f25c68b9a8f17cd41cb9cf759"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\核查\\Supplementary_Fig_2图例_QA.md",
+    "bytes": 4307,
+    "sha256": "b8f2ba0839a8d04c7fb99cf866b15c4392992ac02f48aae07d3e77ae78f874bb"
+  },
+  {
+    "path": "图S2\\绘图工程\\图例\\核查\\Supplementary_Fig_2图例_交付说明.md",
+    "bytes": 2122,
+    "sha256": "53900268cd0eb012b46ce4bca22aa1b10733f902185efa8de4aaa10e2e53a8bd"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG02\\Supplementary_Fig_2_s02_edges.csv",
+    "bytes": 14376,
+    "sha256": "7eb5ebe61533067295a95b6cf0413f859262239f0be110fc1178450ea695856d"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG03\\Supplementary_Fig_2_s03_edges.csv",
+    "bytes": 15192,
+    "sha256": "c8c5be8c42301194ae2b811602b7b915b330b9835651f8d73feba08985633a16"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG06\\Supplementary_Fig_2_s06_edges.csv",
+    "bytes": 31808,
+    "sha256": "fa9b7c3a8c25f14c41cc72a6369be7a064501d889a6347019d637553c3e9ee5e"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG07\\Supplementary_Fig_2_s07_edges.csv",
+    "bytes": 17553,
+    "sha256": "923a2ea5c7db9067eb43ae5200e64d80de18f48fe35c30c846e7eab978b9fa87"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG09\\Supplementary_Fig_2_s09_edges.csv",
+    "bytes": 16171,
+    "sha256": "7efe9af9e064c2226f9812d3d8d04339df1e65231bfa6cba0e26a9e02ed04ef3"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG10\\Supplementary_Fig_2_s10_edges.csv",
+    "bytes": 12725,
+    "sha256": "5de5aee93e3f0ef93d6e70eb1466e7800c0ad384fc26907058a9e8a695adfc33"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG11\\Supplementary_Fig_2_s11_edges.csv",
+    "bytes": 45835,
+    "sha256": "b9bb85e738df47f84af45e1665cad29f6e626059c446d53c4180e8fd7b3ba76f"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG12\\Supplementary_Fig_2_s12_edges.csv",
+    "bytes": 19404,
+    "sha256": "53fabc9d9f01a3f39ffec3d4bcafba08e393038e843c1ffec3ebf14d625b9de1"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG13\\Supplementary_Fig_2_s13_edges.csv",
+    "bytes": 22152,
+    "sha256": "582602488c56a339e509b16378223d76581c850a11b49754d19fa76f0bf00411"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG15\\Supplementary_Fig_2_s15_edges.csv",
+    "bytes": 23716,
+    "sha256": "19574e3dea341a5780ff93a69c7b9f0828f08c3f99f805a319dea46a1b47a115"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG16\\Supplementary_Fig_2_s16_edges.csv",
+    "bytes": 9671,
+    "sha256": "74826386e648e893b39ae79140021bdd3525d80e519a3acda2168f0734154aa7"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\单个SDG网络\\SDG17\\Supplementary_Fig_2_s17_edges.csv",
+    "bytes": 13166,
+    "sha256": "ae7af8ff4c5e199b13d83ae893596723a5b1451290ade91165b0ad8d5b577138"
+  },
+  {
+    "path": "图S2\\绘图工程\\数据\\原分析方法快照.txt",
+    "bytes": 22949,
+    "sha256": "08f70b2e82dd0cb14da92b2ef78807a2d8fc9e69437544a70ecb65b2093ad55d"
+  },
+  {
+    "path": "图S2\\绘图工程\\网络\\gephi_edges_颜色休整后.csv",
+    "bytes": 153867,
+    "sha256": "730fcc1b588966cc8caecf47a758f7fa8b523f2d6eba6d710f167241e59abe09"
+  },
+  {
+    "path": "图S2\\绘图工程\\网络\\gephi_nodes.csv",
+    "bytes": 25101,
+    "sha256": "2615e6df9f13bdd3e4a8c76f45abce298585ecb773f620c75b7a4cd22ac7d452"
+  },
+  {
+    "path": "图S2\\绘图工程\\网络\\Supplementary_Fig_2_layout.gephi",
+    "bytes": 48433,
+    "sha256": "e8ef4f21fc9329be469147080a0ac87c4371700be3a6948f31a1e4d9905fee95"
+  },
+  {
+    "path": "图S2\\绘图工程\\网络\\Supplementary_Fig_2_network.pdf",
+    "bytes": 68182,
+    "sha256": "3e7468efd49c5b89855b61dba1fd50bcca1a71f7a6d3549585a66ff4124f969f"
+  },
+  {
+    "path": "图S2\\绘图工程\\网络\\Supplementary_Fig_2_network.png",
+    "bytes": 734320,
+    "sha256": "4e12840d97119213cb93269e3489ccb76ea9dd9187ae8987e3b4f48c840b5efc"
+  },
+  {
+    "path": "图S2\\绘图工程\\网络\\Supplementary_Fig_2_network.svg",
+    "bytes": 252058,
+    "sha256": "1cd7807fedf59f5552b8bd23f40ff011df36ddb572bb2852215e9cf04591ff40"
+  },
+  {
+    "path": "图S2\\绘图工程\\网络\\Supplementary_Fig_2_pooled_union_颜色休整后.gexf",
+    "bytes": 873853,
+    "sha256": "648160888cabe05b2974ab0c2612acf2bdd867d401139dcc5a8e7b5bee9bf611"
+  },
+  {
+    "path": "图S2\\绘图工程\\网络\\配色复核.json",
+    "bytes": 1071,
+    "sha256": "39c67f9c650f01d7e3dc9bbd6db04915aa000804843896f6202c84f57238ccc0"
+  },
+  {
+    "path": "图S2\\绘图工程\\网络\\配色说明.md",
+    "bytes": 1470,
+    "sha256": "2c63d9166026e5bdbef4483ebc1e5fe600487cf6f9f85e438b36e322efc3204a"
+  },
+  {
+    "path": "图S3\\README.md",
+    "bytes": 551,
+    "sha256": "3e21b857d2ae5fb78d5477e2067e86f10e23a3b375ac6f86c1f5ede0ac312895"
+  },
+  {
+    "path": "图S3\\出图\\Supplementary_Fig_3.png",
+    "bytes": 1571586,
+    "sha256": "03194f93b1c7f931d282f08a79a81ba98e4992c5e3423be36fffa016a7a1d981"
+  },
+  {
+    "path": "图S3\\图S3a\\代码\\绘制Supplementary_Fig_3a_机构城市相似性.py",
+    "bytes": 21408,
+    "sha256": "d720354d5cebddf61dada0d6739444fc913fd0f9ef32704df6aa8b9e0b5df672"
+  },
+  {
+    "path": "图S3\\图S3a\\出图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S3\\图S3a\\出图\\Supplementary_Fig_3a_稳定Target组合的机构城市相似性_重构.pdf",
+    "bytes": 4324100,
+    "sha256": "38416f82676d605556efbea5959ac8508279eaf5b22348f160fad326bc6ae564"
+  },
+  {
+    "path": "图S3\\图S3a\\出图\\Supplementary_Fig_3a_稳定Target组合的机构城市相似性_重构.png",
+    "bytes": 2211087,
+    "sha256": "cc8838a5254c8ddccd2691dedecc1218e6b59e69593e7118216ec8a4b60ed45b"
+  },
+  {
+    "path": "图S3\\图S3a\\出图\\Supplementary_Fig_3a_稳定Target组合的机构城市相似性_重构.svg",
+    "bytes": 13084596,
+    "sha256": "668693d8f646a4cde527529c422772ae1994f4f0d0ca656eba5ec417f081c558"
+  },
+  {
+    "path": "图S3\\图S3a\\出图\\Supplementary_Fig_3a_稳定Target组合的机构城市相似性_重构.tiff",
+    "bytes": 8789398,
+    "sha256": "7840eb868a60647b9c1ab340f1a61cf522b936c4b13aa85a45f42b3d284e2412"
+  },
+  {
+    "path": "图S3\\图S3a\\复核\\绘图复核.json",
+    "bytes": 4997,
+    "sha256": "035d89b8ceb7e9adbf154272d319cfca752c4cf078a0e8a86a38647b58c16436"
+  },
+  {
+    "path": "图S3\\图S3a\\数据\\city_network_edges_display.csv",
+    "bytes": 33059,
+    "sha256": "b94903a9443a798957d1839742566f218e7e3c2e64e496999077600342d5e370"
+  },
+  {
+    "path": "图S3\\图S3a\\数据\\city_network_top_links.csv",
+    "bytes": 1622,
+    "sha256": "609ba4877d56c30f3d333115ff0f128b6284d96fd6d5da8f56bf71df0ae5fea9"
+  },
+  {
+    "path": "图S3\\图S3a\\数据\\city_nodes_all.csv",
+    "bytes": 82496,
+    "sha256": "35fa1c817211120f09503b3a851a8e2d015b5066f48bc0fd37a5f3d015df56fc"
+  },
+  {
+    "path": "图S3\\图S3a\\数据\\city_similarity_all_pairs.csv",
+    "bytes": 1474832,
+    "sha256": "9a8dc83646151bac785c0257ce6eb9414ec90fd810d5b55b606c20e44193dea4"
+  },
+  {
+    "path": "图S3\\图S3a\\数据\\city_stable_pair_profiles_long.csv",
+    "bytes": 260264,
+    "sha256": "6de105f412bcfcbee07dc786b80ffd86faa91d1543f0ce08da0a52e4977b70cb"
+  },
+  {
+    "path": "图S3\\图S3a\\数据\\Figure3a_州县底图与科研供给.gpkg",
+    "bytes": 11161600,
+    "sha256": "53067ab9a0e422f9278718ed54144c965410efe069064e15a904b1e3cb54f268"
+  },
+  {
+    "path": "图S3\\图S3a\\数据\\project_stable_pair_events.csv",
+    "bytes": 395790,
+    "sha256": "0238790d134182bf0036dda2d56cf6f33cf0bfe16880e616aead9473065d0a55"
+  },
+  {
+    "path": "图S3\\图S3a\\数据\\stable_target_pairs.csv",
+    "bytes": 16556,
+    "sha256": "b599806b3d1e4b86ceafcc371e96f1fd642be02e94d685eef070f4e232abc67a"
+  },
+  {
+    "path": "图S3\\图S3a\\数据\\跨插图连线_全部7条.csv",
+    "bytes": 1618,
+    "sha256": "8f26a5af6c738e0c14a903201784240f3148925f5439db60d518cfe678fa4298"
+  },
+  {
+    "path": "图S3\\图S3b\\代码\\核查报告\\figure_data_audit.json",
+    "bytes": 2317,
+    "sha256": "a381d09c1b2622e94cfb49cac75aa5efda034213e304931247d547baf3752645"
+  },
+  {
+    "path": "图S3\\图S3b\\代码\\绘制Supplementary_Fig_3b_环形矩阵与城市聚类树.py",
+    "bytes": 15814,
+    "sha256": "45540bd36d70aab85b861e3b0e22084b7633ab9a127626eb5a6f970554b36e2b"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\Supplementary_Fig_3b_NSF_外环放大版.pdf",
+    "bytes": 837402,
+    "sha256": "3004716e0461276179e853a5ee01a5036cc45cbe6dc04629ab164203bca08506"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\Supplementary_Fig_3b_NSF_外环放大版.png",
+    "bytes": 4396567,
+    "sha256": "febc81862aa9ef5acec28814d9f79da24e7038a50008f33533b9f29e6ebf3539"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\Supplementary_Fig_3b_NSFC_外环放大版.pdf",
+    "bytes": 332224,
+    "sha256": "baf1086679b9354f663dc4b452cfe1d28af1341974730a194c018aada90bceed"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\Supplementary_Fig_3b_NSFC_外环放大版.png",
+    "bytes": 3613662,
+    "sha256": "d976b235c9532793465413011ffa5c0de801233f7082f42ce67167fb66d11e0e"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\Supplementary_Fig_3b_全量城市Target组合_清晰标注版.pdf",
+    "bytes": 1107541,
+    "sha256": "50e891d3a0f63d9ed11d17ddb99f9f2fb68d26df0bb68713ca6c9e0e6cff15ce"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\Supplementary_Fig_3b_全量城市Target组合_清晰标注版.png",
+    "bytes": 4782068,
+    "sha256": "f283fa5ee6604e0d4e80d3c463fa7af5c1fb4ed0afabf2f6e1f44abe1537be13"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\Supplementary_Fig_3b_全量城市Target组合_清晰标注版.svg",
+    "bytes": 6384242,
+    "sha256": "9392b8e52d7c0b39eabc612380e7633c4b750c0a97990a26e986bab5088b1fbf"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\Supplementary_Fig_3b_完整组合与城市索引.pdf",
+    "bytes": 157797,
+    "sha256": "30643bb0b146c767107dbf97a97363f21c71f08d643ba51d7ff7c54989fa4526"
+  },
+  {
+    "path": "图S3\\图S3b\\图\\Supplementary_Fig_3b_组合编号与城市覆盖数.png",
+    "bytes": 441432,
+    "sha256": "ac071f0b47153db25b395ee38cc2498577583edd654f396096c2b1d3eb99b158"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\NSF_city_index.csv",
+    "bytes": 14953,
+    "sha256": "96d47e3e25be19cf68c4fe3ecf6dd2d4d70ee230eeb186490847384a0c2e3b28"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\NSF_linkage.csv",
+    "bytes": 9795,
+    "sha256": "21b32ad443c4da24984758fbe4edd62aa77febcfc9d22013e8444d8887220555"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\NSF_presence_clustered.csv",
+    "bytes": 48101,
+    "sha256": "3c6023d6139807ea378f192f0b3dd28c2cb47e1d328c4125543993a396c28a46"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\NSF_record_counts_clustered.csv",
+    "bytes": 48108,
+    "sha256": "8b2efd68e9328261ede3d9c24e1038a0068fdd1845a0338d7ce4256e4d82e820"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\NSFC_city_index.csv",
+    "bytes": 4836,
+    "sha256": "60ba731e12b3f49a4809d9fe7a72960209c153090d928b36a312e8a883b575dd"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\NSFC_linkage.csv",
+    "bytes": 2973,
+    "sha256": "5ddbe14ba5f09ee2e1fd1d32ff97fe3319595a2fa9d2611c7969616263acea61"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\NSFC_presence_clustered.csv",
+    "bytes": 14429,
+    "sha256": "e407b3603fa53946d91294384f45f16f4eae9730853596182aae2b081835ecb4"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\NSFC_record_counts_clustered.csv",
+    "bytes": 14452,
+    "sha256": "5614474d7c4de3eedcb41195f8206bf8184282bb0fef1ba3cb295095f2ab0ce1"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\Target_pair_index_and_city_coverage.csv",
+    "bytes": 17677,
+    "sha256": "3a0cb39d9e2a9bea50292c65142884eb5372971ff48e361dbf44f60c2c9f2774"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\输入数据\\city_nodes_all.csv",
+    "bytes": 82496,
+    "sha256": "35fa1c817211120f09503b3a851a8e2d015b5066f48bc0fd37a5f3d015df56fc"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\输入数据\\city_stable_pair_profiles_long.csv",
+    "bytes": 260264,
+    "sha256": "6de105f412bcfcbee07dc786b80ffd86faa91d1543f0ce08da0a52e4977b70cb"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\输入数据\\project_stable_pair_events.csv",
+    "bytes": 395790,
+    "sha256": "0238790d134182bf0036dda2d56cf6f33cf0bfe16880e616aead9473065d0a55"
+  },
+  {
+    "path": "图S3\\图S3b\\数据\\输入数据\\stable_target_pairs.csv",
+    "bytes": 16556,
+    "sha256": "b599806b3d1e4b86ceafcc371e96f1fd642be02e94d685eef070f4e232abc67a"
+  },
+  {
+    "path": "图S4\\README.md",
+    "bytes": 539,
+    "sha256": "b2861d675f92cc08bf9816f9c520c809455a3ac87e0df56af2e99dc2f417269a"
+  },
+  {
+    "path": "图S4\\出图\\Supplementary_Fig_4.png",
+    "bytes": 1358775,
+    "sha256": "cde04206a09e21b923a0c3d0e95b600f3dc564c7fdf054ed4d6e7b2a9c78aa96"
+  },
+  {
+    "path": "图S4\\图S4a\\代码\\绘制Supplementary_Fig_4a_四列上下对齐.py",
+    "bytes": 17252,
+    "sha256": "779c64aafe769f10a05e37832042a3956dbca91575439f65fbe34219b81300c9"
+  },
+  {
+    "path": "图S4\\图S4a\\出图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S4\\图S4a\\出图\\Supplementary_Fig_4a_需求压力系统与知识任务_四列上下对齐.pdf",
+    "bytes": 75766,
+    "sha256": "2199e89c3c6243ec58a40d92c35344674f2aa80eb4fb0a380548ce31c17a8751"
+  },
+  {
+    "path": "图S4\\图S4a\\出图\\Supplementary_Fig_4a_需求压力系统与知识任务_四列上下对齐.png",
+    "bytes": 1987902,
+    "sha256": "b0d3da24bb679bf3204a469dba27d73b19b1da1519429036c1f986fd0f675660"
+  },
+  {
+    "path": "图S4\\图S4a\\出图\\Supplementary_Fig_4a_需求压力系统与知识任务_四列上下对齐.svg",
+    "bytes": 131373,
+    "sha256": "189345bb55798eae1dd9022ea2c6f54c6ec016dfeea416108fe1b0237cd1c521"
+  },
+  {
+    "path": "图S4\\图S4a\\出图\\Supplementary_Fig_4a_需求压力系统与知识任务_四列上下对齐.tiff",
+    "bytes": 9927710,
+    "sha256": "32753109451d9d39bbdb6d2f05fd5a19b062ef8446afe6a5d5684ce408c01d42"
+  },
+  {
+    "path": "图S4\\图S4a\\复核\\Supplementary_Fig_4a_四列上下对齐_复核结果.json",
+    "bytes": 1952,
+    "sha256": "b82dd73189face063ca440d8a1bcb641d338fe34b665bfad9a403da9a220325e"
+  },
+  {
+    "path": "图S4\\图S4a\\数据\\Supplementary_Fig_4a_四列上下对齐_节点布局.csv",
+    "bytes": 4439,
+    "sha256": "321ad429c65dd94b0fc7979aa8f3630f768e34cfa889525b37e54bc8645a4d80"
+  },
+  {
+    "path": "图S4\\图S4a\\数据\\Supplementary_Fig_4a_四列上下对齐_逐流审计.csv",
+    "bytes": 68635,
+    "sha256": "4fafa33706483f535a2ad3c083fd1b11ba09e1c485874297516cead3830696d9"
+  },
+  {
+    "path": "图S4\\图S4a\\数据\\Supplementary_Fig_4a_流宽与国家倾向审计_原版.csv",
+    "bytes": 39561,
+    "sha256": "c8e6f61844e8369780c5f5242a676330f45c5d84ef02acd9a985375acbd9376f"
+  },
+  {
+    "path": "图S4\\图S4a\\数据\\Supplementary_Fig_4a_逐流配色与宽度审计.csv",
+    "bytes": 68635,
+    "sha256": "4fafa33706483f535a2ad3c083fd1b11ba09e1c485874297516cead3830696d9"
+  },
+  {
+    "path": "图S4\\图S4a\\数据\\Supplementary_Fig_4a_需求转译全量流.csv",
+    "bytes": 92821,
+    "sha256": "8ff9751939cd343e244846403d9c13b57edc1cf0c92e91d7379b8a6b6480f974"
+  },
+  {
+    "path": "图S4\\图S4a\\数据\\节点短标签.json",
+    "bytes": 1331,
+    "sha256": "b208b3190213a055b65f3b4ba6b922a095c4fee224d0ea55e7f0a6ec6b48303e"
+  },
+  {
+    "path": "图S4\\图S4b\\代码\\绘制Supplementary_Fig_4b_六领域知识任务差异.py",
+    "bytes": 10288,
+    "sha256": "4ad7d9d81ea38f5bdf4f96faede6f38775eacf94b4f830542deb09932d2cc656"
+  },
+  {
+    "path": "图S4\\图S4b\\出图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S4\\图S4b\\出图\\Supplementary_Fig_4b_六类城市需求领域的知识任务差异_重构.pdf",
+    "bytes": 39683,
+    "sha256": "55075edc6ef1772fd26ad95a456ab70ba755a7d66aee077001bd9e74ffc14923"
+  },
+  {
+    "path": "图S4\\图S4b\\出图\\Supplementary_Fig_4b_六类城市需求领域的知识任务差异_重构.png",
+    "bytes": 489378,
+    "sha256": "c9d04abe7dda58f2ec18a7bfb6751fd7c0525e4aa88061d14919023b5eee0229"
+  },
+  {
+    "path": "图S4\\图S4b\\出图\\Supplementary_Fig_4b_六类城市需求领域的知识任务差异_重构.svg",
+    "bytes": 86379,
+    "sha256": "e1b54a9b548167af4c6334e5ccec443d5f3ba7db21b9521cc2378f18bdacf94d"
+  },
+  {
+    "path": "图S4\\图S4b\\出图\\Supplementary_Fig_4b_六类城市需求领域的知识任务差异_重构.tiff",
+    "bytes": 2566120,
+    "sha256": "2b4126fea5f05ac47fc4a67527ab95fffbaf5660a192f6289e11e2063c151686"
+  },
+  {
+    "path": "图S4\\图S4b\\复核\\数值与路径计数核验.json",
+    "bytes": 499,
+    "sha256": "5c237c5734532d608ca685b1e43fb1cdb9a854bc520c98ab4416c298b081a57f"
+  },
+  {
+    "path": "图S4\\图S4b\\数据\\六领域差异路径计数.csv",
+    "bytes": 98,
+    "sha256": "f4e0d58298210b13013fecf2d860dd64bf48b188277e9c60f16838cbef28a20c"
+  },
+  {
+    "path": "图S4\\图S4b\\数据\\路径任务校正结果.csv",
+    "bytes": 152586,
+    "sha256": "eeac494294dc08db648a3452ba59da438f4ba8cef4baa0db568053ea915cd07d"
+  },
+  {
+    "path": "图S4\\图S4b\\数据\\领域任务原始结果.csv",
+    "bytes": 10812,
+    "sha256": "f44bce4b3db7a8e65816e7a8d9baf23bcd11083932c4a4053061153c999e85f0"
+  },
+  {
+    "path": "图S5\\README.md",
+    "bytes": 547,
+    "sha256": "e6b34b347164167c63eb8ffe3fe4f12d57a81a12aca6814005c87152c85d5f42"
+  },
+  {
+    "path": "图S5\\出图\\Supplementary_Fig_5.png",
+    "bytes": 213700,
+    "sha256": "b3dc22e61a0accdb4fde0dfceda1f0ba2efa371f41000aedbd012b38ef9644e1"
+  },
+  {
+    "path": "图S5\\绘图工程\\代码\\绘制Supplementary_Fig_5_统一画框与Figure1a配色.py",
+    "bytes": 17331,
+    "sha256": "67a95b077bcc718322e982ff841706f74017a35bd3eb20413ad2239abbdffba8"
+  },
+  {
+    "path": "图S5\\绘图工程\\出图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S5\\绘图工程\\出图\\Supplementary_Fig_5_preview.png",
+    "bytes": 543257,
+    "sha256": "35b28fdf179cd37d47f1742d03760beb0ffd2e8d1b7e8a24ba53fa639313d59e"
+  },
+  {
+    "path": "图S5\\绘图工程\\出图\\Supplementary_Fig_5_知识任务干预残差与行动到达曲线.pdf",
+    "bytes": 80874,
+    "sha256": "97f927c79e9ea9e9b6a784767040cbad036a90ef52a2895b47051d79b05d1e1a"
+  },
+  {
+    "path": "图S5\\绘图工程\\出图\\Supplementary_Fig_5_知识任务干预残差与行动到达曲线.png",
+    "bytes": 770206,
+    "sha256": "ef2cf59d4afd8d1d136f8e5f3902fbd64c9088090b95da4ce762dbdb43352a5d"
+  },
+  {
+    "path": "图S5\\绘图工程\\出图\\Supplementary_Fig_5_知识任务干预残差与行动到达曲线.svg",
+    "bytes": 157606,
+    "sha256": "59cef18faf6cc636fd5d04f6f09162a0ae8552b19804f21fb9b99db315d2943d"
+  },
+  {
+    "path": "图S5\\绘图工程\\出图\\Supplementary_Fig_5_知识任务干预残差与行动到达曲线.tiff",
+    "bytes": 2661036,
+    "sha256": "2a7c5de7dbd5c45a39aab7233014f9c0f24a5abcabeb78199e3092dca0f407f0"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_K-A_Bootstrap完整分布.csv",
+    "bytes": 5600156,
+    "sha256": "5aa45a54dea7df557e4f20848bb51db45fceb302915577c58ca06a6724680ed8"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_K-A中美到达率差异.csv",
+    "bytes": 4201,
+    "sha256": "232897da86d838de3310417e03850102d2d55a36566ceabd6e6b747a60d90dae"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_K-A行动阶段到达曲线.csv",
+    "bytes": 8997,
+    "sha256": "5c361907386d9e5041e7a56e53f2a5c189a52187c3c9145dea48d0eef3e2d6c4"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_K-L_Bootstrap完整分布.csv",
+    "bytes": 3512682,
+    "sha256": "2336beb8ae4f8306f03446d79a9f6c7b7f1a07039530a0687cca169e4e7ef760"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_K-L干预条件残差.csv",
+    "bytes": 10350,
+    "sha256": "40aac018ec5b8e36f5221219b2c59334194231f22561f2995cb4389a079832f4"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_分析参数.csv",
+    "bytes": 547,
+    "sha256": "4255dec3e0a89114de2aa777538406e232dd9968fc8c2aa04e48b34d781ee343"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_原始编码全标签映射.csv",
+    "bytes": 957,
+    "sha256": "0233ca4d76a7d88274fdf0033225e473db9b10f8babddd099a5ad549596fcf03"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_数据与流程审计.csv",
+    "bytes": 3285,
+    "sha256": "6c973a7e0d1fd989cc543c16526fd42c26f937a7b98e4289d4e6638d596ddf06"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_熵平衡诊断.csv",
+    "bytes": 541,
+    "sha256": "ad9aa57becb284996f78c5e6c09416f00390d0a5e45bae29f502ffe519233d62"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_独立复核结果.csv",
+    "bytes": 1543,
+    "sha256": "b94a06403993d2cf5cc4ccf2faa4f48bbe44f39ecaa2b11f79043ec3904868a4"
+  },
+  {
+    "path": "图S5\\绘图工程\\数据\\Supplementary_Fig_5_项目熵平衡权重.csv",
+    "bytes": 386323,
+    "sha256": "67fd37ee38481fbb1807b73afcadf5d1433e18279a7a668f16a46ac6bc313523"
+  },
+  {
+    "path": "图S6\\README.md",
+    "bytes": 654,
+    "sha256": "a1b48fa95bbc985abffd42d1c4e2c9d3027c1a286a80d4db9ec0ba080624b92f"
+  },
+  {
+    "path": "图S6\\出图\\Supplementary_Fig_6.png",
+    "bytes": 441787,
+    "sha256": "f5bef026e7be047ace2626fc2ac9d57a9a76e921ad3a740286b46abdbfc4ec82"
+  },
+  {
+    "path": "图S6\\图S6a\\代码\\plot_lorenz.py",
+    "bytes": 4873,
+    "sha256": "9327ba43df0edb418bf4e6bd5b1067bc1de9c1b73082907d68c02148eb7a9c43"
+  },
+  {
+    "path": "图S6\\图S6a\\代码\\requirements.txt",
+    "bytes": 44,
+    "sha256": "8c095521f815cffbbf39fedf5e356d5d1b3448ec5a5755a55e97ea5666eefe32"
+  },
+  {
+    "path": "图S6\\图S6a\\代码\\verify_data.py",
+    "bytes": 3914,
+    "sha256": "3d9e7ffa0c6fcce810f16f78ba2d8f01fedede40136eff39070c70b613378bd4"
+  },
+  {
+    "path": "图S6\\图S6a\\代码\\verify_pdf.py",
+    "bytes": 1475,
+    "sha256": "8d9513c9cc5a7bccab7911853f92d22b147cc61d117edeb6e8789d6153eab742"
+  },
+  {
+    "path": "图S6\\图S6a\\图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S6\\图S6a\\图\\Supplementary_Fig_6a.pdf",
+    "bytes": 51584,
+    "sha256": "b4716b1d8125f9a66730b9ad31f2c1e6824f98c3fcebb1c1688325c6408697a2"
+  },
+  {
+    "path": "图S6\\图S6a\\图\\Supplementary_Fig_6a.png",
+    "bytes": 281615,
+    "sha256": "3e731ce340da37794ff715092eef69ad7ba1e2d08eb2e88579c423224d92c10a"
+  },
+  {
+    "path": "图S6\\图S6a\\图\\Supplementary_Fig_6a.svg",
+    "bytes": 27002,
+    "sha256": "3e3b276358110f7698ee672f9f1f0c6534fa36399f0796cf063c4f134096d1c8"
+  },
+  {
+    "path": "图S6\\图S6a\\图\\Supplementary_Fig_6a.tiff",
+    "bytes": 544610,
+    "sha256": "5486c6c2cb4079d6e3a75f1ba6f84d8fdf06fe5f2d42cdf3110cb35ea5776c50"
+  },
+  {
+    "path": "图S6\\图S6a\\图\\Supplementary_Fig_6a_预览.png",
+    "bytes": 129105,
+    "sha256": "1f3396ee4308430783a32dc0e0360b87e34b6a4c7984f9faaf619d67724725ca"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\PDF图面复核.json",
+    "bytes": 237,
+    "sha256": "16201aff697aaa46d44f25f3a5d4e77cb05dc336389662e56da7e6ab577d0f84"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\全部地点_升序供给与累计份额.csv",
+    "bytes": 44130,
+    "sha256": "c9e016f8f2d9502ac77d53536445efe51f075a7b6fcd0d0fe499ea93b2e4e490"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\图面边界检查.json",
+    "bytes": 157,
+    "sha256": "2e70ed81ebb4e40c5dd57e28a9aa7327688e34314ef39b7583d4c5624d5945cb"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\实际绘图折点.csv",
+    "bytes": 26726,
+    "sha256": "dc7fa30f18d1325453661f8ce658787511d584452ca0fa85faee2f23a1065be5"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\曲线排序诊断.csv",
+    "bytes": 17804,
+    "sha256": "2cf60687918340c43568b2245afee3b14c8d241a8a0cf734da0d033a96792c8e"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\构建复核.json",
+    "bytes": 631,
+    "sha256": "ce2f3fc4a0c34d5a1bacf3ebbd111c338af4707a32377b6845a6db650d9bff61"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\洛伦兹曲线_全部折点.csv",
+    "bytes": 21452,
+    "sha256": "8d42dc8f93c29add01c8db373c0c3c15e4faea3b336303f79be343e413eb73bc"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\独立数据与导出复核.json",
+    "bytes": 809,
+    "sha256": "42151bf431197ad162d5bb5b4206cc16059e58eb9dea026c7c701d8778611bb4"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\绘图源码检查.json",
+    "bytes": 2708,
+    "sha256": "85e5932dd919b54155600928d20ed7b048d4b9a8421c7c664dccc4eeaa6ed4bf"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\输入快照\\cn_city_totals.csv",
+    "bytes": 48450,
+    "sha256": "481d516ffb39efdcf92024dc1991307844ecf2b348ce906f4c9e66e93acc38bd"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\输入快照\\projects.csv",
+    "bytes": 2944715,
+    "sha256": "5d358023a28b476837fcc09a86871008d044eaf988d974e0cf774d3b9cef2750"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\输入快照\\us_county_mapping.csv",
+    "bytes": 926261,
+    "sha256": "f62cc8b3056328c6a93d5f6af62db587ebe5c090858f20019d318672a8f41571"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\输入快照\\us_county_totals.csv",
+    "bytes": 111790,
+    "sha256": "aa4e410a8b501b43e5aa7b9928be0899b0bc143cab3d7ce8db188fd156474cf9"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\输入清单.json",
+    "bytes": 1149,
+    "sha256": "7a1a3fa875839f76a22ac52ff5532e0c7dd4f2e2529dc7e69ab808df949e28ce"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\集中程度汇总.csv",
+    "bytes": 408,
+    "sha256": "7b01eeff40bea4b33554d00fd3d2b0bd940800bad08d840b5d551bb92335f273"
+  },
+  {
+    "path": "图S6\\图S6a\\数据\\零供给底图单元_排除记录.csv",
+    "bytes": 320368,
+    "sha256": "d4b74a56ebe9e60dc90e31277b44b5a60bf15ce1d61032408851be8f39257dd9"
+  },
+  {
+    "path": "图S6\\图S6b\\code\\plot_supplementary_fig_6b.py",
+    "bytes": 6959,
+    "sha256": "f1026b7fc9c87b846ab6003e40681e07a0c3c1c3afd27bd4096c49437f938a9c"
+  },
+  {
+    "path": "图S6\\图S6b\\code\\requirements.txt",
+    "bytes": 43,
+    "sha256": "50999962acc8520f5dbc61cefaca91df969a94a360b1d485d8e2033c6bde17de"
+  },
+  {
+    "path": "图S6\\图S6b\\data\\input_snapshots\\Figure3b_full_478_locations.csv",
+    "bytes": 79862,
+    "sha256": "b6560d319b115b9035804c26fffc9c68f93c9cec557cc5ad749408ff0a3f8368"
+  },
+  {
+    "path": "图S6\\图S6b\\data\\input_snapshots\\project_level_target_task_allocations.csv",
+    "bytes": 1740364,
+    "sha256": "bc7cdf6ef4fc6f4e360040781f273892d92476a5bb2fd29c3fae8aef9458387a"
+  },
+  {
+    "path": "图S6\\图S6b\\data\\Supplementary_Fig_6b_location_metrics.csv",
+    "bytes": 40938,
+    "sha256": "044c542bedd76302cae6ec7011ada84bcedf12f6313d61616d112ba9af61b592"
+  },
+  {
+    "path": "图S6\\图S6b\\data\\Supplementary_Fig_6b_source_data.csv",
+    "bytes": 473,
+    "sha256": "385845ced07e0feda10ecb702046131053e3fc55091495d8416839314601e3e3"
+  },
+  {
+    "path": "图S6\\图S6b\\notes\\execution_notes.md",
+    "bytes": 864,
+    "sha256": "bfd8d2d0ffe1490bc656f4045cf7b20821aab7bb6c19577732057e61b1682c36"
+  },
+  {
+    "path": "图S6\\图S6b\\outputs\\Supplementary_Fig_6b.pdf",
+    "bytes": 43925,
+    "sha256": "0d213f381446dd594c5bc8903440295849163eca0bd0c3da6e390cb311b865e9"
+  },
+  {
+    "path": "图S6\\图S6b\\outputs\\Supplementary_Fig_6b.png",
+    "bytes": 401535,
+    "sha256": "f1e7d6506f22dab98706d6f2ccb6ce1b6b3b8d5e5164775c00e3f05e6b700a84"
+  },
+  {
+    "path": "图S6\\图S6b\\outputs\\Supplementary_Fig_6b.svg",
+    "bytes": 21870,
+    "sha256": "5283a860df77ac2f293909fdd91c8a8ebbc1ca36c6aff8da738d70acaa7b76bd"
+  },
+  {
+    "path": "图S6\\图S6b\\README.md",
+    "bytes": 1939,
+    "sha256": "45bd27d8ba7388c1cbfffa10b5592d61a6c02a455574b6f9a595984b6f3a6b5e"
+  },
+  {
+    "path": "图S7\\README.md",
+    "bytes": 578,
+    "sha256": "3a1da824704d09a06fc841fea5b03afe7a679305276839a6464b68fa72dd478b"
+  },
+  {
+    "path": "图S7\\出图\\Supplementary_Fig_7.png",
+    "bytes": 1103422,
+    "sha256": "cac48b6a279eba2cecd5317606787f0dafdf7ef927ba81b95641e4be2768a196"
+  },
+  {
+    "path": "图S7\\图S7a\\QA\\Supplementary_Fig_7a_末端流量守恒.csv",
+    "bytes": 589,
+    "sha256": "33eb37451478b8019d9b0f4a68eb01f1dfaab2abaa221ad9a8954fd372ad1308"
+  },
+  {
+    "path": "图S7\\图S7a\\QA\\Supplementary_Fig_7a_重构核查.json",
+    "bytes": 1365,
+    "sha256": "7b5186d4196d23de1717e379beed234d0ccbe7593e10d6c8ab97559c125c3d80"
+  },
+  {
+    "path": "图S7\\图S7a\\代码\\Supplementary_Fig_7a_浅色桑基与末端阶段组.py",
+    "bytes": 16625,
+    "sha256": "633da3651323eaf259d6950dbe4eddc3b8fd327859d6d5a45135c7111e9d7ac4"
+  },
+  {
+    "path": "图S7\\图S7a\\代码\\原图绘图函数.py",
+    "bytes": 33548,
+    "sha256": "f5a606cf4235347044e4e29a5baa748cdebf640b512fd37d6458e67668761fee"
+  },
+  {
+    "path": "图S7\\图S7a\\图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S7\\图S7a\\图\\Supplementary_Fig_7a_浅色桑基与末端阶段组.pdf",
+    "bytes": 393940,
+    "sha256": "289bebce79d9fb8a2b0aa33bd54be1d48b74720a7ed49e4736938636053c419c"
+  },
+  {
+    "path": "图S7\\图S7a\\图\\Supplementary_Fig_7a_浅色桑基与末端阶段组.png",
+    "bytes": 1559494,
+    "sha256": "d979d5d59ea393c8fd15b76ef008f5e052054bcc47970fe8c82890fa93c0d9f5"
+  },
+  {
+    "path": "图S7\\图S7a\\图\\Supplementary_Fig_7a_浅色桑基与末端阶段组.svg",
+    "bytes": 1699593,
+    "sha256": "346af2d1460f77f102f05f28a6b62acbfc50b01ce8abd10f62230d40e59e8337"
+  },
+  {
+    "path": "图S7\\图S7a\\图\\Supplementary_Fig_7a_浅色桑基与末端阶段组.tiff",
+    "bytes": 6310264,
+    "sha256": "6c330587af20558cc4d11bff7b22445ce239f25fc3f35dee9560ef957551c3d3"
+  },
+  {
+    "path": "图S7\\图S7a\\数据\\Supplementary_Fig_7a_末端三组行动阶段份额.csv",
+    "bytes": 1422,
+    "sha256": "384a3468044fcc2281dc378a179ad30dd885736522944c37d20484d866c8bac3"
+  },
+  {
+    "path": "图S7\\图S7a\\数据\\Supplementary_Fig_7a_稳定入口Target覆盖审计.csv",
+    "bytes": 21545,
+    "sha256": "3107b85797148bb6fdebf2e1f0a5df70e4eb6e8c40384c74ac6d71b48909462b"
+  },
+  {
+    "path": "图S7\\图S7a\\数据\\Supplementary_Fig_7a_稳定入口入选SDG.csv",
+    "bytes": 2030,
+    "sha256": "d9aebe78c203188b9b88853b5ce4905d720ff1af1c4ccd125ec611668da32e91"
+  },
+  {
+    "path": "图S7\\图S7a\\数据\\Supplementary_Fig_7a_稳定入口完整路径.csv",
+    "bytes": 213108,
+    "sha256": "e99dcba4b3aafe8989fcb267edd8362de92f724031bc55238e79519b2d6dfe20"
+  },
+  {
+    "path": "图S7\\图S7a\\数据\\来源路径.txt",
+    "bytes": 370,
+    "sha256": "0629f372242971588e265d6687ed472994baede8fec0bec425d62c89aa7b4316"
+  },
+  {
+    "path": "图S7\\图S7b\\代码\\Supplementary_Fig_7b_离散镜像山脊_重构.py",
+    "bytes": 12322,
+    "sha256": "d98ebf4bc5efd8b65511d15fdcbf6b162c583ebaceb4302786d1f1f6cc7de78e"
+  },
+  {
+    "path": "图S7\\图S7b\\图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S7\\图S7b\\图\\Supplementary_Fig_7b_离散镜像山脊_重构.pdf",
+    "bytes": 83398,
+    "sha256": "3c41106e86f59bf0fdf56a30ae300806e86b0359af665a51934bdf22faa1dfb4"
+  },
+  {
+    "path": "图S7\\图S7b\\图\\Supplementary_Fig_7b_离散镜像山脊_重构.png",
+    "bytes": 1131419,
+    "sha256": "cc461b83b9d6e3c7b30ea03c7fff8a51a212b17f0f9b785905a5b9eb8db8a88d"
+  },
+  {
+    "path": "图S7\\图S7b\\图\\Supplementary_Fig_7b_离散镜像山脊_重构.svg",
+    "bytes": 192280,
+    "sha256": "31bcca01fe064213c13b26500fa1c7e8de54868b69f87b20fcb54617ebceccd2"
+  },
+  {
+    "path": "图S7\\图S7b\\图\\Supplementary_Fig_7b_离散镜像山脊_重构.tiff",
+    "bytes": 70859006,
+    "sha256": "02b27e8a243fc25c98e4c22e088760974ee183434a718db1a5d9c1d2e0bdd851"
+  },
+  {
+    "path": "图S7\\图S7b\\数据\\figure5_labels.csv",
+    "bytes": 2590,
+    "sha256": "faa7e1e287b80b27ed39ba7091804f9bcb5a0a5c90e3f54875d04eefe1e6a992"
+  },
+  {
+    "path": "图S7\\图S7b\\数据\\Supplementary_Fig_7b_完整行动阶段份额与差值.csv",
+    "bytes": 104581,
+    "sha256": "c2d56c4c1908e265dc5ff69f6cf9531638730275ac0ef00778789d91e8833689"
+  },
+  {
+    "path": "图S7\\图S7b\\数据\\Supplementary_Fig_7b_干预方式支持度.csv",
+    "bytes": 5014,
+    "sha256": "a1a8fa6bf44bc0b22a2d256c14a4c10e4320adafb9b25c22b6c9363e0b351ef1"
+  },
+  {
+    "path": "图S7\\图S7b\\数据\\Supplementary_Fig_7b_数据来源说明.txt",
+    "bytes": 1015,
+    "sha256": "7887fcc61bbc6bbda9179f58316b980988fd9d288d10e34bf7416c4607a6355b"
+  },
+  {
+    "path": "图S7\\图S7b\\数据\\Supplementary_Fig_7b_项目族熵平衡审计.csv",
+    "bytes": 13360,
+    "sha256": "f6228c235e064a497e1266b97151d80a19dce1ca3d705b2b78b2d28aec224da5"
+  },
+  {
+    "path": "图S7\\图S7b\\数据\\Supplementary_Fig_7b_项目族熵平衡汇总.csv",
+    "bytes": 567,
+    "sha256": "be8add3d2f2d177afb41dbd0e9342c3fdc66561cd5b3c8e4737f4575861aee92"
+  },
+  {
+    "path": "图S7\\图S7b\\数据\\Supplementary_Fig_7b_项目族索引.csv",
+    "bytes": 316955,
+    "sha256": "7116e14c66a3b1d5e75c7d034ffc934af722706bf29b3704645ec2a33ea1a94c"
+  },
+  {
+    "path": "图S7\\图S7b\\数据\\来源路径.txt",
+    "bytes": 414,
+    "sha256": "30e744050023013fc582bdc15a9149bf8ae5f827fcc9de77959da3027b94003d"
+  },
+  {
+    "path": "图S8\\README.md",
+    "bytes": 641,
+    "sha256": "790610d5aaf269628407eeb38558703b5277ff524c98e9d22b3c7e41169585f0"
+  },
+  {
+    "path": "图S8\\出图\\Supplementary_Fig_8.png",
+    "bytes": 336767,
+    "sha256": "ad5b1e1c1a27aa21c8db6caf1c26e1d0555c4eb02873e7287be73e009e7a2a37"
+  },
+  {
+    "path": "图S8\\绘图工程\\QA\\Supplementary_Fig_8_放大窗范围.csv",
+    "bytes": 249,
+    "sha256": "f6a15fda7d70081657adb9883c20f869de65ae220bea440b167c6a08f0526465"
+  },
+  {
+    "path": "图S8\\绘图工程\\QA\\Supplementary_Fig_8_数据质量检查.csv",
+    "bytes": 713,
+    "sha256": "e5a928ebc4c0063f031993c8ff7e5bf0a89621e500938a136611c8d50aa0cc20"
+  },
+  {
+    "path": "图S8\\绘图工程\\代码\\绘图源码_统一配色.py",
+    "bytes": 22701,
+    "sha256": "f151b9e7ddd30fb6537756ac9c1010dd093c03cc955d028ffed58584fb27cd1e"
+  },
+  {
+    "path": "图S8\\绘图工程\\出图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S8\\绘图工程\\出图\\Supplementary_Fig_8_方案A_完整城市对齐散点图.pdf",
+    "bytes": 233418,
+    "sha256": "52890ffa52d4e10a2065f42a8e66dcebc7ac8cda3ca4eb8160dc439888b07f3f"
+  },
+  {
+    "path": "图S8\\绘图工程\\出图\\Supplementary_Fig_8_方案A_完整城市对齐散点图.png",
+    "bytes": 469290,
+    "sha256": "720b562b4de7c884decb6e2dffea389d6d037fe9d8ce04945c18d505f2d70799"
+  },
+  {
+    "path": "图S8\\绘图工程\\出图\\Supplementary_Fig_8_方案A_完整城市对齐散点图.svg",
+    "bytes": 810175,
+    "sha256": "fce2e1100f1bc4558df1bc56a47b53c68fff08a1de5576a300efb1ef2091517b"
+  },
+  {
+    "path": "图S8\\绘图工程\\出图\\Supplementary_Fig_8_方案A_完整城市对齐散点图.tiff",
+    "bytes": 2168654,
+    "sha256": "03603e40863a2fb3f8d6dd8486d586e6e685b13c743ec1913bed730b8a073b9f"
+  },
+  {
+    "path": "图S8\\绘图工程\\图\\README.md",
+    "bytes": 155,
+    "sha256": "a9fa7b9220a2f41caaea86ca7bd01fb6862b2f1ca275a54f3fe46fcc94331b3c"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\4.4规范城市重算摘要.csv",
+    "bytes": 176,
+    "sha256": "16c8fa4ec124a3731a1f2dd8c2654295f32e27a74a7b01668a3da9ec91bd3e68"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\Supplementary_Fig_8_上游数据溯源.csv",
+    "bytes": 806,
+    "sha256": "64f298e390cecec1ff9ac5ef35afbdf6c47bc7c42f2476cc71f069e45a6bb730"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\Supplementary_Fig_8_城市对齐贡献完整数据.csv",
+    "bytes": 251626,
+    "sha256": "1ab525f431fd759b799961c7559c116469884c1b55a6b7556ea69e12cf0edcb1"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\Supplementary_Fig_8_城市标签审计.csv",
+    "bytes": 1481,
+    "sha256": "6ffaeb13a9755b87adf00bcfebbefb008447334acc179e7f36a5152797ee3ce3"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\Supplementary_Fig_8_放大窗范围.csv",
+    "bytes": 247,
+    "sha256": "907a5ee3b532237ebdb728b3a7519b279e1c344e8d1908455803d5e383b911a4"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\Supplementary_Fig_8_面板统计.csv",
+    "bytes": 223,
+    "sha256": "f52fae0eae04ea8498cd6d599e39c5e43908b65a2f959d4c64b54966b626732b"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\城市目标任务_规模参照与贡献差.csv",
+    "bytes": 3304384,
+    "sha256": "13938518b1a74383ae753cb7f5fa20a688fff282dd5ace806af1520d45c5c95b"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\投入供给_全部城市.csv",
+    "bytes": 121078,
+    "sha256": "655bf5e87f8fea2e7c64613ee977492aee9cafed48e380a46b70f92db350f2f8"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\来源路径.txt",
+    "bytes": 348,
+    "sha256": "87cef1dfcbd4ea7204e52f9cc91035d1d34327e7f0d66bf27809d4e7c06c94d6"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\规范城市.csv",
+    "bytes": 121069,
+    "sha256": "4e0e85eaae77c4b8e2849dcdcb5f9fa3c9284e49ebc253d0294b9d6ebcad3c0e"
+  },
+  {
+    "path": "图S8\\绘图工程\\数据\\规范城市目标.csv",
+    "bytes": 131308,
+    "sha256": "a51d8c164ba0d6bb8f60b7ee56359b7a5581202bac62c1eff7d0a1742e50855c"
+  },
+  {
+    "path": "图S9\\README.md",
+    "bytes": 599,
+    "sha256": "e564a76179c7a26e5b5874e9b6a3670ba8dd25d1afd5b0df38ff0f7e3e5a071b"
+  },
+  {
+    "path": "图S9\\出图\\Supplementary_Fig_9.png",
+    "bytes": 1424532,
+    "sha256": "6baac00a1f398a662167241371f039e550458e9ec35e4afbe17b8a4822e884ec"
+  },
+  {
+    "path": "图S9\\源文件\\Supplementary_Fig_9_workflow.png",
+    "bytes": 1424532,
+    "sha256": "6baac00a1f398a662167241371f039e550458e9ec35e4afbe17b8a4822e884ec"
+  },
+  {
+    "path": "图S9\\源文件\\Supplementary_Fig_9_workflow.pptx",
+    "bytes": 2061773,
+    "sha256": "dd5d7e3793f955249efd611b45f2dd5d3cdce0394677d06f02ad346481b6f913"
+  },
+  {
+    "path": "补充图编号与文件索引.csv",
+    "bytes": 2823,
+    "sha256": "295dbd7ace12b59b9d21c9f7394b00e8778f3c8f8a9860e147ffce8b1a820d02"
+  },
+  {
+    "path": "说明\\休整核查报告.md",
+    "bytes": 1118,
+    "sha256": "cd8f2c999c5b323aed8b7e340f7ded8357dcf3a6e59165df3a1bf8cf42104b27"
+  },
+  {
+    "path": "说明\\关键结果一致性.json",
+    "bytes": 1359,
+    "sha256": "d12197a7bff943d2054e1b7424e07e925e9d097e19f2bed6dfec3e867a76cf9f"
+  },
+  {
+    "path": "说明\\绘图入口核验.json",
+    "bytes": 2699,
+    "sha256": "08910de51b0b054be7b8bc517eefbfcb60d89e2f866612fe02a57d869b2db5a1"
+  },
+  {
+    "path": "重绘分图.py",
+    "bytes": 1589,
+    "sha256": "1dbb2c965749c7430077be5e76ee2f40b1fafe33e17c062d52a49f6e0504990d"
+  }
+]

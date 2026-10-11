@@ -1,0 +1,7 @@
+﻿agency,mismatch_class,path_support,group_support,absolute_error,share_sum_pct
+NSF,Near alignment,750.1666666666666,750.1666666666666,0.0,100.0
+NSF,Relative higher research supply,1495.0190476190476,1495.0190476190476,0.0,100.0
+NSF,Relative lower research supply,168.8,168.79999999999998,2.842170943040401e-14,100.0
+NSFC,Near alignment,541.4166666666666,541.4166666666667,1.1368683772161603e-13,99.99999999999999
+NSFC,Relative higher research supply,2637.0833333333335,2637.0833333333335,0.0,100.0
+NSFC,Relative lower research supply,41.58333333333333,41.58333333333333,0.0,100.0

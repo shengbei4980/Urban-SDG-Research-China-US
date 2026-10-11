@@ -1,4 +1,0 @@
-PIL
-matplotlib
-numpy
-pandas

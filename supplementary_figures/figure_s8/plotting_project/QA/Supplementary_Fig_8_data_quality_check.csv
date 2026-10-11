@@ -1,0 +1,14 @@
+﻿check,agency,observed,expected,status
+Unique agency-city key,ALL,0.0,0.0,PASS
+Critical null cells,ALL,0.0,0.0,PASS
+Positive plotting coordinates,ALL,0.0,0.0,PASS
+F sums to one,NSF,0.9999999999999878,1.0,PASS
+C sums to one,NSF,0.9999999999999664,1.0,PASS
+E identity,NSF,1.2041478925084448e-12,0.0,PASS
+Aligned contribution sums to overlap,NSF,0.5264223352061858,0.5264223352062118,PASS
+Six rule-selected labels,NSF,6.0,6.0,PASS
+F sums to one,NSFC,0.9999999999999896,1.0,PASS
+C sums to one,NSFC,0.9999999999999909,1.0,PASS
+E identity,NSFC,4.654054919228656e-13,0.0,PASS
+Aligned contribution sums to overlap,NSFC,0.5460123609417862,0.5460123609417941,PASS
+Six rule-selected labels,NSFC,6.0,6.0,PASS

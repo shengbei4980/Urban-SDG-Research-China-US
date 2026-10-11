@@ -1,0 +1,523 @@
+from __future__ import annotations
+
+from collections import Counter
+from dataclasses import dataclass
+from hashlib import sha256
+from itertools import combinations
+from pathlib import Path
+from typing import Iterable
+import sys
+
+import numpy as np
+import pandas as pd
+from scipy.special import gammaln
+from scipy.stats import hypergeom
+
+
+FIGURE1_ROOT = Path(r"E:\可持续发展目标基金\定稿撰写\成图\figure1")
+FIGURE1A_DIR = FIGURE1_ROOT / "figure1a"
+sys.path.insert(0, str(FIGURE1A_DIR))
+
+from figure1a_sdg_target_ring import (  # noqa: E402
+    NSF_DEFAULT,
+    NSFC_DEFAULT,
+    SDG_LABELS,
+    SDG_ORDER,
+    parse_target_codebook,
+    split_codes,
+)
+
+
+RAW_NSF = Path(r"E:\可持续发展目标基金\框架内容初稿\数据\nsf_awards_results.csv")
+RAW_NSFC = Path(r"E:\可持续发展目标基金\框架内容初稿\数据\nsfc_results_requests_no_images.csv")
+YEARS = list(range(2015, 2026))
+NSF_COLOR = "#003366"
+NSFC_COLOR = "#8B0000"
+SHARED_COLOR = "#6A5A8E"
+TEXT_COLOR = "#1F2933"
+GRID_COLOR = "#D9DEE3"
+LIGHT_GREY = "#EEF1F4"
+EXPECTED_ROWS = {"NSF": 6207, "NSFC": 5546}
+
+
+@dataclass(frozen=True)
+class AnalysisSettings:
+    seed: int = 20260820
+    annual_bootstrap: int = 2000
+    pair_permutations: int = 10000
+    pair_bootstrap: int = 2000
+    alpha: float = 0.05
+    min_stable_cooccurrence: int = 10
+
+
+def file_sha256(path: Path) -> str:
+    digest = sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def load_projects(path: Path, agency: str, codebook: pd.DataFrame) -> pd.DataFrame:
+    required = ["record_id", "award_year", "sdg_goal_multi", "sdg_target_multi"]
+    data = pd.read_csv(path, usecols=required, low_memory=False)
+    if len(data) != EXPECTED_ROWS[agency]:
+        raise ValueError(f"{agency}: expected {EXPECTED_ROWS[agency]:,} rows, found {len(data):,}")
+    data["award_year"] = pd.to_numeric(data["award_year"], errors="raise").astype(int)
+    if not data["award_year"].between(2015, 2025).all():
+        years = sorted(data.loc[~data["award_year"].between(2015, 2025), "award_year"].unique())
+        raise ValueError(f"{agency}: years outside 2015–2025: {years}")
+    data["targets"] = data["sdg_target_multi"].map(split_codes)
+    data["goals"] = data["sdg_goal_multi"].map(split_codes)
+    valid_targets = set(codebook["target_code"])
+    invalid = sorted({label for labels in data["targets"] for label in labels if label not in valid_targets})
+    if invalid:
+        raise ValueError(f"{agency}: invalid Target codes: {invalid}")
+    if data["targets"].map(len).eq(0).any():
+        raise ValueError(f"{agency}: projects without a formal Target label")
+    if data["record_id"].astype(str).duplicated().any():
+        raise ValueError(f"{agency}: duplicate record_id values")
+    data["agency"] = agency
+    return data
+
+
+def load_all_projects() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    codebook = parse_target_codebook()
+    nsf = load_projects(NSF_DEFAULT, "NSF", codebook)
+    nsfc = load_projects(NSFC_DEFAULT, "NSFC", codebook)
+    return nsf, nsfc, codebook
+
+
+def raw_candidate_counts() -> pd.DataFrame:
+    nsf = pd.read_csv(RAW_NSF, usecols=["award_year"], low_memory=False)
+    nsf_year = pd.to_numeric(nsf["award_year"], errors="coerce").dropna().astype(int)
+    nsfc = pd.read_csv(RAW_NSFC, usecols=["ratify_year", "conclusion_year"], low_memory=False)
+    ratify = pd.to_numeric(nsfc["ratify_year"], errors="coerce")
+    conclusion = pd.to_numeric(nsfc["conclusion_year"], errors="coerce")
+    nsfc_year = ratify.fillna(conclusion).dropna().astype(int)
+    rows = []
+    for agency, series in (("NSF", nsf_year), ("NSFC", nsfc_year)):
+        counts = series.value_counts()
+        for year in YEARS:
+            rows.append({"agency": agency, "year": year, "raw_candidate_count": int(counts.get(year, 0))})
+    return pd.DataFrame(rows)
+
+
+def project_target_matrix(data: pd.DataFrame, target_order: list[str], fractional: bool) -> np.ndarray:
+    index = {target: idx for idx, target in enumerate(target_order)}
+    matrix = np.zeros((len(data), len(target_order)), dtype=float if fractional else np.uint8)
+    for row_idx, labels in enumerate(data["targets"]):
+        unique = list(dict.fromkeys(labels))
+        value = 1.0 / len(unique) if fractional else 1
+        matrix[row_idx, [index[label] for label in unique]] = value
+    return matrix
+
+
+def _pattern_bootstrap_metrics(
+    target_lists: Iterable[list[str]],
+    target_order: list[str],
+    n_resamples: int,
+    rng: np.random.Generator,
+) -> tuple[float, float, float, float]:
+    patterns = Counter(tuple(sorted(set(labels))) for labels in target_lists)
+    n = int(sum(patterns.values()))
+    if n < 30:
+        return np.nan, np.nan, np.nan, np.nan
+    target_index = {target: idx for idx, target in enumerate(target_order)}
+    pattern_items = list(patterns.items())
+    pattern_matrix = np.zeros((len(pattern_items), len(target_order)), dtype=float)
+    probs = np.empty(len(pattern_items), dtype=float)
+    for row_idx, (labels, count) in enumerate(pattern_items):
+        probs[row_idx] = count / n
+        contribution = 1.0 / len(labels)
+        pattern_matrix[row_idx, [target_index[label] for label in labels]] = contribution
+    boot_pattern_counts = rng.multinomial(n, probs, size=n_resamples)
+    weighted = boot_pattern_counts @ pattern_matrix
+    breadth = (weighted > 0).sum(axis=1).astype(float)
+    totals = weighted.sum(axis=1, keepdims=True)
+    shares = np.divide(weighted, totals, out=np.zeros_like(weighted), where=totals > 0)
+    entropy = -(np.where(shares > 0, shares * np.log(np.where(shares > 0, shares, 1.0)), 0.0)).sum(axis=1)
+    evenness = np.divide(
+        entropy,
+        np.log(breadth),
+        out=np.zeros_like(entropy),
+        where=breadth > 1,
+    )
+    b_lo, b_hi = np.percentile(breadth, [2.5, 97.5])
+    e_lo, e_hi = np.percentile(evenness, [2.5, 97.5])
+    return float(b_lo), float(b_hi), float(e_lo), float(e_hi)
+
+
+def _log_comb(n: int, k: int) -> float:
+    if k < 0 or k > n:
+        return -np.inf
+    return float(gammaln(n + 1) - gammaln(k + 1) - gammaln(n - k + 1))
+
+
+def expected_rarefied_breadth(binary: np.ndarray, sample_size: int = 100) -> float:
+    n = binary.shape[0]
+    if n < sample_size:
+        return np.nan
+    denominator = _log_comb(n, sample_size)
+    marginal = binary.sum(axis=0).astype(int)
+    absent_prob = []
+    for count in marginal:
+        if count <= 0:
+            absent_prob.append(1.0)
+        elif n - count < sample_size:
+            absent_prob.append(0.0)
+        else:
+            absent_prob.append(float(np.exp(_log_comb(n - count, sample_size) - denominator)))
+    return float(np.sum(1.0 - np.asarray(absent_prob)))
+
+
+def build_annual_metrics(
+    nsf: pd.DataFrame,
+    nsfc: pd.DataFrame,
+    codebook: pd.DataFrame,
+    settings: AnalysisSettings,
+) -> pd.DataFrame:
+    raw = raw_candidate_counts()
+    target_order = codebook["target_code"].tolist()
+    rng = np.random.default_rng(settings.seed)
+    rows: list[dict[str, float | int | str]] = []
+    for agency, data in (("NSF", nsf), ("NSFC", nsfc)):
+        raw_agency = raw.loc[raw["agency"].eq(agency)].set_index("year")["raw_candidate_count"]
+        mature_median = float(np.median([raw_agency.loc[year] for year in range(2016, 2021)]))
+        for year in YEARS:
+            subset = data.loc[data["award_year"].eq(year)]
+            fractional = project_target_matrix(subset, target_order, fractional=True)
+            binary = project_target_matrix(subset, target_order, fractional=False)
+            weights = fractional.sum(axis=0)
+            observed = int((weights > 0).sum())
+            if weights.sum() > 0 and observed > 1:
+                p = weights[weights > 0] / weights.sum()
+                entropy = float(-(p * np.log(p)).sum())
+                evenness = float(entropy / np.log(observed))
+            else:
+                evenness = np.nan
+            b_lo, b_hi, e_lo, e_hi = _pattern_bootstrap_metrics(
+                subset["targets"], target_order, settings.annual_bootstrap, rng
+            )
+            raw_count = int(raw_agency.loc[year])
+            availability = float(min(1.0, raw_count / mature_median)) if mature_median else np.nan
+            if availability >= 0.8:
+                availability_class = "High"
+            elif availability >= 0.5:
+                availability_class = "Moderate"
+            else:
+                availability_class = "Limited"
+            rows.append(
+                {
+                    "agency": agency,
+                    "year": year,
+                    "n_projects": len(subset),
+                    "raw_candidate_count": raw_count,
+                    "mature_cohort_median_raw": mature_median,
+                    "relative_record_availability": availability,
+                    "availability_class": availability_class,
+                    "observed_target_breadth": observed,
+                    "breadth_bootstrap_ci_low": b_lo,
+                    "breadth_bootstrap_ci_high": b_hi,
+                    "expected_breadth_at_100_projects": expected_rarefied_breadth(binary, 100),
+                    "pielou_evenness": evenness,
+                    "evenness_bootstrap_ci_low": e_lo,
+                    "evenness_bootstrap_ci_high": e_hi,
+                    "mean_targets_per_project": float(binary.sum(axis=1).mean()) if len(subset) else np.nan,
+                    "bootstrap_resamples": settings.annual_bootstrap if len(subset) >= 30 else 0,
+                }
+            )
+    annual = pd.DataFrame(rows)
+    if annual["n_projects"].sum() != len(nsf) + len(nsfc):
+        raise AssertionError("Annual project counts do not sum to the two final corpora")
+    return annual
+
+
+def bh_adjust(p_values: np.ndarray) -> np.ndarray:
+    p_values = np.asarray(p_values, dtype=float)
+    order = np.argsort(p_values)
+    ranked = p_values[order]
+    adjusted = ranked * len(ranked) / np.arange(1, len(ranked) + 1)
+    adjusted = np.minimum.accumulate(adjusted[::-1])[::-1]
+    result = np.empty_like(adjusted)
+    result[order] = np.clip(adjusted, 0.0, 1.0)
+    return result
+
+
+def pair_state_counts(binary: np.ndarray, a: int, b: int) -> np.ndarray:
+    av = binary[:, a].astype(bool)
+    bv = binary[:, b].astype(bool)
+    both = int(np.sum(av & bv))
+    a_only = int(np.sum(av & ~bv))
+    b_only = int(np.sum(~av & bv))
+    neither = int(len(binary) - both - a_only - b_only)
+    return np.asarray([both, a_only, b_only, neither], dtype=int)
+
+
+def bootstrap_pair_association(
+    state_counts: np.ndarray,
+    n_resamples: int,
+    rng: np.random.Generator,
+) -> np.ndarray:
+    n = int(state_counts.sum())
+    draws = rng.multinomial(n, state_counts / n, size=n_resamples)
+    both = draws[:, 0].astype(float)
+    n_a = draws[:, 0] + draws[:, 1]
+    n_b = draws[:, 0] + draws[:, 2]
+    expected = n_a * n_b / n
+    return np.log2((both + 0.5) / (expected + 0.5))
+
+
+def _country_pair_table(
+    data: pd.DataFrame,
+    codebook: pd.DataFrame,
+    settings: AnalysisSettings,
+    seed_offset: int,
+) -> tuple[pd.DataFrame, np.ndarray]:
+    target_order = codebook["target_code"].tolist()
+    binary = project_target_matrix(data, target_order, fractional=False).astype(np.int32)
+    n = len(binary)
+    marginal = binary.sum(axis=0).astype(int)
+    cooccurrence = binary.T @ binary
+    rng = np.random.default_rng(settings.seed + seed_offset)
+    rows = []
+    for idx, (a, b) in enumerate(combinations(range(len(target_order)), 2)):
+        observed = int(cooccurrence[a, b])
+        n_a = int(marginal[a])
+        n_b = int(marginal[b])
+        expected = n_a * n_b / n
+        if n_a == 0 or n_b == 0:
+            null_mean = 0.0
+            null_sd = 0.0
+            z_perm = 0.0
+            empirical_p = 1.0
+            exact_p = 1.0
+        else:
+            null = rng.hypergeometric(n_a, n - n_a, n_b, size=settings.pair_permutations)
+            null_mean = float(null.mean())
+            null_sd = float(null.std(ddof=1))
+            z_perm = float((observed - null_mean) / null_sd) if null_sd > 0 else 0.0
+            empirical_p = float((1 + np.sum(null >= observed)) / (settings.pair_permutations + 1))
+            exact_p = float(hypergeom.sf(observed - 1, n, n_a, n_b)) if observed > 0 else 1.0
+        rows.append(
+            {
+                "pair_index": idx,
+                "target_a": target_order[a],
+                "target_b": target_order[b],
+                "target_a_index": a,
+                "target_b_index": b,
+                "n_projects": n,
+                "n_a": n_a,
+                "n_b": n_b,
+                "observed_cooccurrence": observed,
+                "expected_cooccurrence": expected,
+                "log2_observed_expected": float(np.log2((observed + 0.5) / (expected + 0.5))),
+                "permutation_null_mean": null_mean,
+                "permutation_null_sd": null_sd,
+                "permutation_z": z_perm,
+                "empirical_permutation_p": empirical_p,
+                "exact_hypergeometric_p": exact_p,
+                "permutation_repetitions": settings.pair_permutations,
+            }
+        )
+    table = pd.DataFrame(rows)
+    table["bh_q"] = bh_adjust(table["exact_hypergeometric_p"].to_numpy())
+    return table, binary
+
+
+def _annual_pair_slope(
+    data: pd.DataFrame,
+    target_a: str,
+    target_b: str,
+    annual: pd.DataFrame,
+) -> tuple[float, int]:
+    points = []
+    support = annual.set_index("year")
+    for year in YEARS:
+        subset = data.loc[data["award_year"].eq(year), "targets"]
+        n = len(subset)
+        if n < 30:
+            continue
+        a_present = subset.map(lambda labels: target_a in labels).to_numpy(dtype=bool)
+        b_present = subset.map(lambda labels: target_b in labels).to_numpy(dtype=bool)
+        n_a = int(a_present.sum())
+        n_b = int(b_present.sum())
+        if n_a < 5 or n_b < 5:
+            continue
+        observed = int(np.sum(a_present & b_present))
+        expected = n_a * n_b / n
+        score = float(np.log2((observed + 0.5) / (expected + 0.5)))
+        availability = float(support.loc[year, "relative_record_availability"])
+        points.append((year, score, n * availability))
+    if len(points) < 3:
+        return np.nan, len(points)
+    x = np.asarray([point[0] for point in points], dtype=float)
+    y = np.asarray([point[1] for point in points], dtype=float)
+    w = np.asarray([point[2] for point in points], dtype=float)
+    x_centered = x - np.average(x, weights=w)
+    denominator = np.sum(w * x_centered**2)
+    if denominator <= 0:
+        return np.nan, len(points)
+    slope = np.sum(w * x_centered * y) / denominator
+    return float(slope * 10.0), len(points)
+
+
+def build_pair_statistics(
+    nsf: pd.DataFrame,
+    nsfc: pd.DataFrame,
+    codebook: pd.DataFrame,
+    annual: pd.DataFrame,
+    settings: AnalysisSettings,
+) -> pd.DataFrame:
+    nsf_pairs, nsf_binary = _country_pair_table(nsf, codebook, settings, 101)
+    nsfc_pairs, nsfc_binary = _country_pair_table(nsfc, codebook, settings, 202)
+    key = ["pair_index", "target_a", "target_b", "target_a_index", "target_b_index"]
+    pairs = nsf_pairs.merge(nsfc_pairs, on=key, suffixes=("_nsf", "_nsfc"))
+    candidate = (
+        ((pairs["observed_cooccurrence_nsf"] >= 5) & (pairs["bh_q_nsf"] < settings.alpha))
+        | ((pairs["observed_cooccurrence_nsfc"] >= 5) & (pairs["bh_q_nsfc"] < settings.alpha))
+    )
+    rng = np.random.default_rng(settings.seed + 303)
+    for prefix in ("nsf", "nsfc"):
+        pairs[f"bootstrap_ci_low_{prefix}"] = np.nan
+        pairs[f"bootstrap_ci_high_{prefix}"] = np.nan
+    pairs["bootstrap_difference_ci_low_nsf_minus_nsfc"] = np.nan
+    pairs["bootstrap_difference_ci_high_nsf_minus_nsfc"] = np.nan
+    for row_idx in pairs.index[candidate]:
+        row = pairs.loc[row_idx]
+        a = int(row["target_a_index"])
+        b = int(row["target_b_index"])
+        nsf_boot = bootstrap_pair_association(pair_state_counts(nsf_binary, a, b), settings.pair_bootstrap, rng)
+        nsfc_boot = bootstrap_pair_association(pair_state_counts(nsfc_binary, a, b), settings.pair_bootstrap, rng)
+        pairs.loc[row_idx, ["bootstrap_ci_low_nsf", "bootstrap_ci_high_nsf"]] = np.percentile(nsf_boot, [2.5, 97.5])
+        pairs.loc[row_idx, ["bootstrap_ci_low_nsfc", "bootstrap_ci_high_nsfc"]] = np.percentile(nsfc_boot, [2.5, 97.5])
+        difference = nsf_boot - nsfc_boot
+        pairs.loc[
+            row_idx,
+            ["bootstrap_difference_ci_low_nsf_minus_nsfc", "bootstrap_difference_ci_high_nsf_minus_nsfc"],
+        ] = np.percentile(difference, [2.5, 97.5])
+
+    stable_nsf = (
+        (pairs["observed_cooccurrence_nsf"] >= settings.min_stable_cooccurrence)
+        & (pairs["bh_q_nsf"] < settings.alpha)
+        & (pairs["permutation_z_nsf"] > 0)
+        & (pairs["bootstrap_ci_low_nsf"] > 0)
+    )
+    stable_nsfc = (
+        (pairs["observed_cooccurrence_nsfc"] >= settings.min_stable_cooccurrence)
+        & (pairs["bh_q_nsfc"] < settings.alpha)
+        & (pairs["permutation_z_nsfc"] > 0)
+        & (pairs["bootstrap_ci_low_nsfc"] > 0)
+    )
+    pairs["stable_nsf"] = stable_nsf
+    pairs["stable_nsfc"] = stable_nsfc
+    pairs["stability_class"] = "Not retained"
+    shared = stable_nsf & stable_nsfc
+    nsf_specific = stable_nsf & (pairs["bootstrap_difference_ci_low_nsf_minus_nsfc"] > 0)
+    nsfc_specific = stable_nsfc & (pairs["bootstrap_difference_ci_high_nsf_minus_nsfc"] < 0)
+    pairs.loc[shared, "stability_class"] = "Shared"
+    pairs.loc[~shared & nsf_specific, "stability_class"] = "NSF-specific"
+    pairs.loc[~shared & nsfc_specific, "stability_class"] = "NSFC-specific"
+    pairs.loc[
+        (stable_nsf | stable_nsfc) & pairs["stability_class"].eq("Not retained"),
+        "stability_class",
+    ] = "Other stable"
+
+    pairs["association_difference_nsf_minus_nsfc"] = (
+        pairs["log2_observed_expected_nsf"] - pairs["log2_observed_expected_nsfc"]
+    )
+    pairs["display_score"] = 0.0
+    pairs.loc[shared, "display_score"] = (
+        pairs.loc[shared, ["log2_observed_expected_nsf", "log2_observed_expected_nsfc"]].min(axis=1)
+        * np.log1p(
+            pairs.loc[shared, ["observed_cooccurrence_nsf", "observed_cooccurrence_nsfc"]].min(axis=1)
+        )
+    )
+    nsf_class = pairs["stability_class"].eq("NSF-specific")
+    nsfc_class = pairs["stability_class"].eq("NSFC-specific")
+    pairs.loc[nsf_class, "display_score"] = (
+        pairs.loc[nsf_class, "association_difference_nsf_minus_nsfc"]
+        * np.log1p(pairs.loc[nsf_class, "observed_cooccurrence_nsf"])
+    )
+    pairs.loc[nsfc_class, "display_score"] = (
+        -pairs.loc[nsfc_class, "association_difference_nsf_minus_nsfc"]
+        * np.log1p(pairs.loc[nsfc_class, "observed_cooccurrence_nsfc"])
+    )
+    pairs["main_network"] = False
+    for label, cap in (("Shared", 8), ("NSF-specific", 6), ("NSFC-specific", 6)):
+        selected = pairs.loc[pairs["stability_class"].eq(label)].nlargest(cap, "display_score").index
+        pairs.loc[selected, "main_network"] = True
+
+    nsf_annual = annual.loc[annual["agency"].eq("NSF")]
+    nsfc_annual = annual.loc[annual["agency"].eq("NSFC")]
+    # Annual direction is a display attribute for the capped main network, not
+    # a screening statistic. Computing it only for displayed pairs also avoids
+    # repeatedly scanning both corpora for all 7,260 tested pairs.
+    pairs["availability_weighted_change_per_decade_nsf"] = np.nan
+    pairs["annual_years_used_nsf"] = 0
+    pairs["availability_weighted_change_per_decade_nsfc"] = np.nan
+    pairs["annual_years_used_nsfc"] = 0
+    for row_idx in pairs.index[pairs["main_network"]]:
+        row = pairs.loc[row_idx]
+        s_nsf, k_nsf = _annual_pair_slope(nsf, row["target_a"], row["target_b"], nsf_annual)
+        s_nsfc, k_nsfc = _annual_pair_slope(nsfc, row["target_a"], row["target_b"], nsfc_annual)
+        pairs.loc[row_idx, "availability_weighted_change_per_decade_nsf"] = s_nsf
+        pairs.loc[row_idx, "annual_years_used_nsf"] = k_nsf
+        pairs.loc[row_idx, "availability_weighted_change_per_decade_nsfc"] = s_nsfc
+        pairs.loc[row_idx, "annual_years_used_nsfc"] = k_nsfc
+    pairs["direction_panel"] = False
+    eligible_direction = pairs.loc[
+        pairs["main_network"]
+        & pairs["availability_weighted_change_per_decade_nsf"].notna()
+        & pairs["availability_weighted_change_per_decade_nsfc"].notna()
+    ].copy()
+    eligible_direction["direction_support"] = (
+        eligible_direction["observed_cooccurrence_nsf"] + eligible_direction["observed_cooccurrence_nsfc"]
+    )
+    direction_indices = []
+    for label, cap in (("Shared", 4), ("NSF-specific", 3), ("NSFC-specific", 3)):
+        direction_indices.extend(
+            eligible_direction.loc[eligible_direction["stability_class"].eq(label)]
+            .nlargest(cap, "direction_support")
+            .index.tolist()
+        )
+    pairs.loc[direction_indices, "direction_panel"] = True
+    pairs["pair_bootstrap_resamples"] = np.where(candidate, settings.pair_bootstrap, 0)
+    return pairs
+
+
+def weighted_goal_counts(data: pd.DataFrame, fractional: bool = True) -> pd.Series:
+    counts = pd.Series(0.0, index=SDG_ORDER)
+    for labels in data["goals"]:
+        unique = list(dict.fromkeys(labels))
+        value = 1.0 / len(unique) if fractional else 1.0
+        counts.loc[unique] += value
+    return counts
+
+
+def weighted_target_counts(data: pd.DataFrame, target_order: list[str], fractional: bool = True) -> pd.Series:
+    counts = pd.Series(0.0, index=target_order)
+    for labels in data["targets"]:
+        unique = list(dict.fromkeys(labels))
+        value = 1.0 / len(unique) if fractional else 1.0
+        counts.loc[unique] += value
+    return counts
+
+
+def annual_sdg_composition(data: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for year in YEARS:
+        subset = data.loc[data["award_year"].eq(year)]
+        counts = weighted_goal_counts(subset, fractional=True)
+        total = counts.sum()
+        for sdg in SDG_ORDER:
+            rows.append(
+                {
+                    "year": year,
+                    "sdg_code": sdg,
+                    "sdg_label_en": SDG_LABELS[sdg],
+                    "fractional_count": float(counts[sdg]),
+                    "share_pct": float(counts[sdg] / total * 100.0) if total else np.nan,
+                }
+            )
+    return pd.DataFrame(rows)

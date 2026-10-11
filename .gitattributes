@@ -1,7 +1,7 @@
 # Preserve source line endings; store large payloads in Git LFS.
 * -text
-supplementary_figures/figure_s8/figure_s8b/figures/Figure5d_discrete_mirrored_ridgelines_reconstructed.tiff filter=lfs diff=lfs merge=lfs -text
 coding_data/NSF_coding_evidence.csv filter=lfs diff=lfs merge=lfs -text
 coding_data/NSFC_coding_evidence.csv filter=lfs diff=lfs merge=lfs -text
 coding_data/nsf_awards_results.csv filter=lfs diff=lfs merge=lfs -text
 coding_data/nsfc_results_requests_no_images.csv filter=lfs diff=lfs merge=lfs -text
+supplementary_figures/figure_s7/figure_s7b/figures/Supplementary_Fig_7b_discrete_mirrored_ridgelines_reconstructed.tiff filter=lfs diff=lfs merge=lfs -text
