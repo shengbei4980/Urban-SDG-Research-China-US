@@ -22,122 +22,15 @@ from scipy.special import rel_entr
 from scipy.stats import linregress, t as student_t
 
 ROOT = Path(__file__).resolve().parents[1]
-INPUT = ROOT / '数据/input_snapshots'
-DATA, FIG, QA = ROOT/'data', ROOT/'figures', ROOT/'audit'
+INPUT = ROOT / 'data/input_snapshots'
+DATA, FIG, QA = ROOT/'data', ROOT/'figures', ROOT/'review/marker_revision'
 TASKS = [f'K{i:02d}' for i in range(1, 7)]
 KEYS = ['agency', 'unit_id']
 THRESHOLD = 20
 
 
-def metrics(e):
-    """Estimate from allocations, without reusing the previous plotted metrics."""
-    t = e.groupby(KEYS+['sdg', 'task']).supply.sum().unstack('task', fill_value=0)
-    t = t.reindex(columns=TASKS, fill_value=0)
-    national = t.groupby(level=['agency', 'sdg']).sum()
-    g = t.reset_index()[KEYS+['sdg']].copy()
-    values = t.to_numpy()
-    n = np.stack([national.loc[(a, s)].to_numpy() for a, _, s in t.index])
-    rest = n - values
-    assert np.min(rest) > -1e-8
-    rest = np.maximum(rest, 0)
-    assert (values.sum(axis=1)>0).all() and (rest.sum(axis=1)>0).all()
-    p = values/values.sum(axis=1, keepdims=True)
-    q = rest/rest.sum(axis=1, keepdims=True)
-    full = n/n.sum(axis=1, keepdims=True)
-    def jsd(x, y):
-        midpoint = (x+y)/2
-        return (rel_entr(x, midpoint).sum(axis=1)+rel_entr(y, midpoint).sum(axis=1))/(2*np.log(2))
-    g['goal_supply'] = values.sum(axis=1)
-    g['jsd_rest_bits'] = jsd(p,q)
-    g['jsd_country_bits'] = jsd(p,full)
-    gn = e.groupby(KEYS+['sdg']).project_family_id.nunique().rename('goal_family_n')
-    g = g.merge(gn, on=KEYS+['sdg'], validate='one_to_one')
-    for metric in ['jsd_rest_bits', 'jsd_country_bits']:
-        g['weighted_'+metric] = g.goal_supply*g[metric]
-    u = g.groupby(KEYS).agg(supply=('goal_supply','sum'),
-        weighted_jsd=('weighted_jsd_rest_bits','sum'),
-        weighted_jsd_full=('weighted_jsd_country_bits','sum'))
-    u['jsd_rest_bits'] = u.weighted_jsd/u.supply
-    u['jsd_country_bits'] = u.weighted_jsd_full/u.supply
-    u = u.drop(columns=['weighted_jsd','weighted_jsd_full'])
-    u['family_n'] = e.groupby(KEYS).project_family_id.nunique()
-    u['unit_name'] = e.groupby(KEYS).unit_name.first()
-    u['unit_type'] = e.groupby(KEYS).unit_type.first()
-    u['F_pct'] = 100*u.supply/u.groupby(level='agency').supply.transform('sum')
-    weights = e.groupby(KEYS+['project_family_id']).supply.sum()
-    u['effective_family_n'] = weights.groupby(level=KEYS).apply(lambda w: w.sum()**2/(w*w).sum())
-    u = u.reset_index()
-    u['marker_filled'] = u.family_n.ge(THRESHOLD)
-    u['supply_rank'] = u.groupby('agency').supply.rank(method='first',ascending=False).astype(int)
-    g['goal_share_within_location'] = g.goal_supply/g.groupby(KEYS).goal_supply.transform('sum')
-    g['goal_supply_share_within_country_pct'] = 100*g.goal_supply/g.groupby(['agency','sdg']).goal_supply.transform('sum')
-    return u, g
 
 
-def build():
-    for folder in [DATA,FIG,QA]:
-        folder.mkdir(parents=True,exist_ok=True)
-    e = pd.read_csv(INPUT/'project_level_target_task_allocations.csv',dtype={'record_id':str})
-    projects = pd.read_csv(INPUT/'projects.csv',dtype={'record_id':str})
-    assert not e.duplicated(KEYS+['record_id','sdg']).any()
-    assert e.supply.gt(0).all() and set(e.task)==set(TASKS)
-    assert e.sdg.nunique()==12
-    assert np.allclose(e.supply,e.city_weight/e.sdg_count)
-    e = e.merge(projects[['agency','record_id','award_year']],on=['agency','record_id'],validate='many_to_one')
-    assert e.award_year.notna().all()
-    u,g = metrics(e)
-    assert u.groupby('agency').size().to_dict()=={'NSF':352,'NSFC':126}
-    assert np.allclose(u.groupby('agency').supply.sum(),[5000,5546])
-    assert np.allclose(u.groupby('agency').F_pct.sum(),100)
-    assert u.F_pct.gt(0).all(), 'Log axis requires strictly positive supply shares.'
-    assert u.jsd_rest_bits.between(-1e-12,1+1e-12).all()
-    assert np.isfinite(u[['F_pct','jsd_rest_bits']]).all().all()
-    # Independent numeric check against the prior scipy.distance-based audit.
-    prior = pd.read_csv(INPUT/'design_review_criteria.csv')
-    check = u.merge(prior,on=KEYS,suffixes=('','_prior'),validate='one_to_one')
-    errors = {c:float((check[c]-check[c+'_prior']).abs().max()) for c in ['F_pct','jsd_rest_bits','family_n']}
-    assert max(errors.values())<1e-9, errors
-    states = pd.read_csv(INPUT/'us_county_mapping.csv',dtype={'GEOID':str})
-    state_by_unit = ('US_'+states.GEOID).to_frame('unit_id').assign(state=states.institution_region).drop_duplicates()
-    assert not state_by_unit.unit_id.duplicated().any()
-    u = u.merge(state_by_unit,on='unit_id',how='left',validate='many_to_one')
-    u['label'] = u.unit_name
-    us = u.agency.eq('NSF')
-    u.loc[us,'label'] = u.loc[us,'unit_name']+', '+u.loc[us,'state']
-    u['direct_label'] = u.supply_rank.le(5)
-    assert u[u.direct_label].groupby('agency').size().eq(5).all()
-    # Every current manuscript SDG11/SDG13 example is already in these top-five lists.
-    u.to_csv(DATA/'Figure3b_full_478_locations.csv',index=False,encoding='utf-8-sig')
-    g.to_csv(DATA/'Figure3b_locations_SDG_task_difference_decomposition.csv',index=False,encoding='utf-8-sig')
-    overlaps = u.groupby(['agency','F_pct','jsd_rest_bits']).size().rename('location_count').reset_index()
-    overlaps[overlaps.location_count.gt(1)].to_csv(DATA/'coincident_point_records.csv',index=False,encoding='utf-8-sig')
-    sensitivity=[]
-    for window, sub in [('observed',e),('2015-2023',e[e.award_year.between(2015,2023)])]:
-        wu,wg = metrics(sub)
-        for a,z in wu.groupby('agency'):
-            for minimum in [0,20,30,50]:
-                s=z[z.family_n.ge(minimum)]
-                sensitivity.append(dict(scope='location_support',window=window,agency=a,minimum_families=minimum,
-                    retained_locations=len(s),supply_coverage_pct=float(s.F_pct.sum()),
-                    median_jsd_rest=float(s.jsd_rest_bits.median()),median_jsd_country=float(s.jsd_country_bits.median())))
-            # Within-goal filtering is diagnostic only; reweight the retained goals explicitly.
-            for minimum in [20,30,50]:
-                sg=wg[(wg.agency.eq(a)) & wg.goal_family_n.ge(minimum)].copy()
-                num=sg.groupby(KEYS).weighted_jsd_rest_bits.sum()
-                den=sg.groupby(KEYS).goal_supply.sum()
-                sensitivity.append(dict(scope='within_goal_support_reweighted',window=window,agency=a,minimum_families=minimum,
-                    retained_locations=len(den),supply_coverage_pct=float(100*den.sum()/z.supply.sum()),
-                    median_jsd_rest=float((num/den).median()),median_jsd_country=np.nan))
-    pd.DataFrame(sensitivity).to_csv(DATA/'support_and_common_year_sensitivity.csv',index=False,encoding='utf-8-sig')
-    palette_source=(INPUT/'figure1a_sdg_target_ring.py').read_text(encoding='utf-8-sig')
-    palette={key:re.search(r'^'+key+r'\s*=\s*"(#[0-9A-Fa-f]{6})"',palette_source,re.M).group(1)
-             for key in ['NSF_DARK','NSF_MID','NSFC_DARK','NSFC_MID']}
-    assert palette=={'NSF_DARK':'#003366','NSF_MID':'#7F99B2','NSFC_DARK':'#8B0000','NSFC_MID':'#C57F7F'}
-    (DATA/'Figure1a_referenced_palette.json').write_text(json.dumps(palette,indent=2),encoding='utf-8')
-    manifest=[dict(file=f.name,sha256=hashlib.sha256(f.read_bytes()).hexdigest(),bytes=f.stat().st_size)
-              for f in sorted(INPUT.iterdir()) if f.is_file()]
-    (QA/'input_snapshot_inventory.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
-    return u,g,palette,errors
 
 
 def plot(u,palette,errors):
@@ -147,14 +40,15 @@ def plot(u,palette,errors):
         'axes.edgecolor':'#000000','text.color':'#202830','axes.labelcolor':'#202830',
         'legend.frameon':False,'savefig.facecolor':'white'})
     # Quantitative grid: matched panels at 183 mm full-figure width.
-    fig=plt.figure(figsize=(7.2047244094,4.9606299213),facecolor='white')
+    fig=plt.figure(figsize=(7.2047244094,4.20),facecolor='white')
     fig.text(.025,.96,'b',fontsize=12,fontweight='bold',va='top')
     fig.text(.095,.958,'Research supply and task-profile differentiation',fontsize=10.2,fontweight='bold',va='top')
     fig.text(.095,.918,'All research locations · 12 SDGs · six knowledge tasks',fontsize=7.5,color='#56616B',va='top')
     axes=[]; annotations=[]; panel_report=[]; regressions=[]; regression_curves=[]
     xmin,xmax=.004,32
     for ix,(agency,title,marker) in enumerate([('NSF','United States · NSF','o'),('NSFC','China · NSFC','s')]):
-        ax=fig.add_axes([.10+ix*.455,.265,.395,.545])
+        ax=fig.add_axes([.10+ix*.455,.265,.395,.395*7.2047244094/4.20/1.35])
+        ax.set_box_aspect(1/1.35)
         axes.append(ax)
         z=u[u.agency.eq(agency)].copy()
         dark,mid=palette[agency+'_DARK'],palette[agency+'_MID']
@@ -257,6 +151,17 @@ def plot(u,palette,errors):
                 points_beneath_labels.append(i)
     assert not points_beneath_labels,points_beneath_labels
     assert all(all(s.get_visible() and s.get_edgecolor()==(0.,0.,0.,1.) for s in ax.spines.values()) for ax in axes)
+    marker_checks=[]
+    for ax in axes:
+        assert np.isclose(ax.bbox.width/ax.bbox.height,1.35)
+        for collection in ax.collections:
+            if not (collection.get_gid() or '').endswith('_locations'): continue
+            path=collection.get_paths()[0].get_extents()
+            for transform in collection.get_transforms():
+                width=path.width*abs(transform[0,0]); height=path.height*abs(transform[1,1])
+                assert np.isclose(width/height,1,atol=1e-10)
+            marker_checks.append({'id':collection.get_gid(),'width_over_height':float(width/height),'points':len(collection.get_offsets())})
+    (QA/'marker_aspect_verification.json').write_text(json.dumps(marker_checks,indent=2),encoding='utf-8')
     name='Figure3b_NSF_NSFC_all_locations_two_panels'
     fig.savefig(FIG/(name+'.pdf'))
     fig.savefig(FIG/(name+'.svg'))
@@ -267,18 +172,21 @@ def plot(u,palette,errors):
     report=dict(status='PASS',locations=478,no_locations_removed=True,panels=panel_report,
         numeric_comparison_max_error=errors,black_full_frames=True,label_overlap_count=len(label_overlaps),
         labels_outside_axes=outside,points_beneath_labels=points_beneath_labels,
-        figure_size_mm=[183,126],raster_dpi=600,palette=palette,
+        figure_size_mm=[183,106.68],raster_dpi=600,palette=palette,
         point_alpha=1,filled_marker_area_pt2=12,open_marker_area_pt2=12,
         regression='OLS: JSD = intercept + slope × log10(F_pct), separately by country',
         confidence_intervals='pointwise 95% Student-t mean-response confidence bands',
         independence='one administrative location per point; profiles share domestic reference data',
         versions=dict(python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,matplotlib=matplotlib.__version__))
-    (QA/'data_and_figure_check.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
-    pd.DataFrame(regressions).to_csv(DATA/'linear_regression_statistics.csv',index=False,encoding='utf-8-sig')
-    pd.concat(regression_curves,ignore_index=True).to_csv(DATA/'regression_line_and_95CI_plot_data.csv',index=False,encoding='utf-8-sig')
+    (QA/'data_and_figure_audit.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+    pd.DataFrame(regressions).to_csv(QA/'linear_regression_statistics.csv',index=False,encoding='utf-8-sig')
+    pd.concat(regression_curves,ignore_index=True).to_csv(QA/'regression_curves_95CI.csv',index=False,encoding='utf-8-sig')
     print(json.dumps(report,ensure_ascii=False,indent=2))
 
 
 if __name__=='__main__':
-    locations,goals,colors,errors=build()
-    plot(locations,colors,errors)
+    for folder in (FIG,QA): folder.mkdir(parents=True,exist_ok=True)
+    locations=pd.read_csv(DATA/'Figure3b_full_478_locations.csv')
+    colors=json.loads((DATA/'Figure1a_referenced_palette.json').read_text(encoding='utf-8-sig'))
+    assert locations.groupby('agency').size().to_dict()=={'NSF':352,'NSFC':126}
+    plot(locations,colors,{'source':'unchanged frozen location table'})

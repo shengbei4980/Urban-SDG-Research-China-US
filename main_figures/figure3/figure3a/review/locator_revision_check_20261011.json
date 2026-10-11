@@ -1,0 +1,29 @@
+{
+  "source_files_checked": 8,
+  "source_files_changed": 0,
+  "top10_values": "Compared against existing source CSVs; unchanged",
+  "visual_review": "NE and YRD locators and leaders checked. Wuhan label moved left/down to clear YRD locator.",
+  "width_warning": "Original 14-inch source layout preserved for this local graphical change.",
+  "exports": {
+    "png": {
+      "pixels": [
+        8400,
+        6000
+      ],
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "tiff": {
+      "pixels": [
+        8400,
+        6000
+      ],
+      "dpi": [
+        600.0,
+        600.0
+      ]
+    }
+  }
+}

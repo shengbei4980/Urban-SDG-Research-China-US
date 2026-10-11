@@ -1,6 +1,9 @@
 from pathlib import Path
 import os,sys,json,hashlib
 ENV=Path(sys.prefix)
+if os.name == 'nt' and (ENV/'Library/bin').exists():
+    os.add_dll_directory(str(ENV/'Library/bin'))
+    os.environ['PATH']=str(ENV/'Library/bin')+os.pathsep+os.environ.get('PATH','')
 os.environ.setdefault('GDAL_DATA',str(ENV/'Library/share/gdal'));os.environ.setdefault('PROJ_LIB',str(ENV/'Library/share/proj'))
 import geopandas as gpd
 import pandas as pd
@@ -138,7 +141,7 @@ c=map_axis([.520,.543,.465,.350],[73,18,136,54],'+proj=aea +lat_1=25 +lat_2=47 +
 scale(u,1200,xy=(.055,.05));north(u,(.965,.84))
 scale(c,1200,xy=(.055,.05));north(c,(.965,.84))
 for unit,offset in {'06037':(-57,10),'08013':(-85,25),'53033':(10,25),'26161':(-100,33),'04013':(16,-9),'48041':(-93,-16),'06073':(0,-30)}.items():ranked_label(u,unit,offset,'main')
-for unit,offset in {'110000':(-74,29),'120000':(26,10),'420100':(22,-2),'440100':(-38,-34),'610100':(20,16),'620100':(-85,22),'510100':(-77,-9)}.items():ranked_label(c,unit,offset,'main')
+for unit,offset in {'110000':(-74,29),'120000':(26,10),'420100':(-38,-25),'440100':(-38,-34),'610100':(20,16),'620100':(-85,22),'510100':(-77,-9)}.items():ranked_label(c,unit,offset,'main')
 
 ak=map_axis([.220,.399,.095,.115],[-170,51,-130,72],'EPSG:3338','NSF','Alaska',True)
 hi=map_axis([.327,.399,.067,.115],[-161,18,-154,23],'+proj=aea +lat_1=18 +lat_2=23 +lat_0=20 +lon_0=-157 +datum=WGS84 +units=m','NSF','Hawaii',True)
@@ -148,6 +151,41 @@ for unit,offset in {'36061':(.025,.19),'25017':(.025,.87),'25001':(.025,.49)}.it
 yr=map_axis([.545,.399,.250,.115],[118,29.6,122.3,33.2],'+proj=aea +lat_1=29 +lat_2=34 +lat_0=31 +lon_0=120 +datum=WGS84 +units=m','NSFC','Yangtze River Delta detail',True)
 for unit,offset in {'320100':(.035,.73),'310000':(.72,.43),'330100':(.04,.14)}.items():ranked_label(yr,unit,offset,'Yangtze inset','axes fraction')
 sc=map_axis([.817,.399,.153,.115],[105,3.5,123,24],'+proj=aea +lat_1=5 +lat_2=25 +lat_0=15 +lon_0=114 +datum=WGS84 +units=m','NSFC','South China Sea',True)
+
+# Match the locator convention used in Supplementary Fig. 3a. These are
+# geographic display windows, not administrative regional boundaries.
+locator_records=[]
+fig.canvas.draw()
+for main_ax,detail_ax,code,title,route_x,route_y in (
+    (u,ne,'NE','Northeast detail',.474,.544),
+    (c,yr,'YRD','Yangtze River Delta detail',.944,.550),
+):
+    west,south,east,north_bound=detail_ax._bounds
+    lon=np.r_[np.linspace(west,east,80),np.full(80,east),
+              np.linspace(east,west,80),np.full(80,west)]
+    lat=np.r_[np.full(80,south),np.linspace(south,north_bound,80),
+              np.full(80,north_bound),np.linspace(north_bound,south,80)]
+    x,y=main_ax._geo[1].transform(lon,lat)
+    main_ax.add_patch(Polygon(np.column_stack([x,y]),closed=True,fill=False,
+                             edgecolor='black',linewidth=1.1,zorder=6))
+    label_xy=main_ax._geo[1].transform(east,north_bound)
+    annotations.append(main_ax.annotate(code,label_xy,xytext=(5,5),
+        textcoords='offset points',fontsize=8,fontweight='bold',color='black',
+        zorder=31,bbox=dict(facecolor='white',edgecolor='none',pad=.8)))
+    detail_ax.set_title(f'{code} · {title}',loc='left',fontsize=8,pad=5,color='#263039')
+    for spine in detail_ax.spines.values():
+        spine.set_color('black');spine.set_linewidth(1.1)
+    start_xy=main_ax._geo[1].transform(east,(south+north_bound)/2)
+    start=fig.transFigure.inverted().transform(main_ax.transData.transform(start_xy))
+    inset_box=detail_ax.get_position();end=(inset_box.x1,inset_box.y1)
+    route=[start,(route_x,start[1]),(route_x,route_y),(end[0],route_y),end]
+    fig.add_artist(plt.Line2D(*np.array(route).T,transform=fig.transFigure,
+        color='#87919B',lw=.7,linestyle=(0,(3,3)),zorder=1.5))
+    locator_records.append({'agency':main_ax._agency,'detail_map':title,'code':code,
+        'bounds_wgs84':list(detail_ax._bounds),
+        'connector_figure_coordinates':np.asarray(route).tolist(),
+        'meaning':'Display window, not an administrative regional boundary'})
+(Q/'inset_locator_parameters.json').write_text(json.dumps(locator_records,ensure_ascii=False,indent=2),encoding='utf8')
 
 for x,cmap,agency in [(.055,blue,'NSF'),(.555,red,'NSFC')]:
     norm=norms[agency]
@@ -205,8 +243,12 @@ for item in annotations+fig.texts+bar_artists:
     if not fig.bbox.contains(bbox.x0,bbox.y0) or not fig.bbox.contains(bbox.x1,bbox.y1):out_of_canvas.append(item.get_text())
 assert not out_of_canvas,out_of_canvas
 assert len(top_labels)==20
-pd.DataFrame(top_labels).to_csv(D/'Figure3a_Top10_label_mapping.csv',index=False,encoding='utf-8-sig')
-pd.DataFrame(bar_records).to_csv(D/'Figure3a_Top10_bar_plot_data.csv',index=False,encoding='utf-8-sig')
+# Verify the existing plotting values without rewriting the source data.
+for records,filename in [(top_labels,'Figure3a_Top10_label_mapping.csv'),
+                         (bar_records,'Figure3a_Top10_bar_plot_data.csv')]:
+    current=pd.DataFrame(records)
+    previous=pd.read_csv(D/filename,dtype={'unit_id':str},encoding='utf-8-sig')
+    pd.testing.assert_frame_equal(current,previous,check_dtype=False,rtol=1e-12,atol=1e-12)
 (Q/'color_scale_and_bar_parameters.json').write_text(json.dumps(scale_records,ensure_ascii=False,indent=2),encoding='utf8')
 assert hashlib.sha256(gpkg.read_bytes()).hexdigest()==gis_hash_before
 (Q/'layout_verification.json').write_text(json.dumps({'panels':layout,'out_of_canvas':out_of_canvas,'gis_sha256_before':gis_hash_before,'gis_sha256_after':hashlib.sha256(gpkg.read_bytes()).hexdigest(),'reference_note':'North direction is referenced to each main map-frame centre, independent of symbol placement.'},ensure_ascii=False,indent=2),encoding='utf8')

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "NSF_open_256_locations",
+    "width_over_height": 1.0,
+    "points": 256
+  },
+  {
+    "id": "NSF_filled_96_locations",
+    "width_over_height": 1.0,
+    "points": 96
+  },
+  {
+    "id": "NSFC_open_86_locations",
+    "width_over_height": 1.0,
+    "points": 86
+  },
+  {
+    "id": "NSFC_filled_40_locations",
+    "width_over_height": 1.0,
+    "points": 40
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "data_files_unchanged": 12,
+  "rasters": [
+    {
+      "name": "Figure3b_NSF_NSFC_全量地点双面板.png",
+      "pixels": [
+        4322,
+        2520
+      ],
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    {
+      "name": "Figure3b_NSF_NSFC_全量地点双面板.tiff",
+      "pixels": [
+        4322,
+        2520
+      ],
+      "dpi": [
+        600.0,
+        600.0
+      ]
+    }
+  ]
+}

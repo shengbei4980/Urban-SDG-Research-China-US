@@ -1,0 +1,29 @@
+{
+  "source_files_checked": 9,
+  "source_files_changed": 0,
+  "visual_review": "Locator boxes, NE/YRD labels and dashed leaders checked; no new label overlap observed.",
+  "width_warning": "Original 14-inch source-sheet geometry retained for this localized edit; no change to map aspect or layout.",
+  "supplementary_document_modified": false,
+  "exports": {
+    "png": {
+      "pixels": [
+        8400,
+        6000
+      ],
+      "dpi": [
+        599.9988,
+        599.9988
+      ]
+    },
+    "tiff": {
+      "pixels": [
+        8400,
+        6000
+      ],
+      "dpi": [
+        600.0,
+        600.0
+      ]
+    }
+  }
+}

@@ -3,8 +3,13 @@ pandas
 matplotlib
 scipy
 Pillow
-# 地图分图3a另需以下地理绘图依赖
+# Geospatial dependencies for map panel 3a
 geopandas
 pyproj
 shapely
 pyogrio
+
+# Complete S3 vector assembly
+pypdf
+pypdfium2
+reportlab

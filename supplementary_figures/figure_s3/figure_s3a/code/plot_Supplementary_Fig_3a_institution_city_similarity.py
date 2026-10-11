@@ -121,7 +121,7 @@ edges["a_region"] = edges.city_a_id.map(node_index.map_region)
 edges["b_region"] = edges.city_b_id.map(node_index.map_region)
 cross_inset = edges.loc[edges.a_region.ne(edges.b_region)].copy()
 assert len(cross_inset) == 7 and cross_inset.agency.eq("NSF").all()
-cross_inset.to_csv(DATA / 'inset_connecting_lines_all_7_links.csv', index=False, encoding="utf-8-sig")
+# Keep source data read-only during graphical revisions.
 
 
 def in_window(frame: pd.DataFrame, bounds: list[float]) -> pd.Series:
@@ -317,6 +317,48 @@ for entry in (
     city_label(*entry)
 
 
+# Geographic locator windows use the exact clipping bounds of the detail maps,
+# not their padded projected axes limits. Densify each edge before projection.
+locator_records = []
+fig.canvas.draw()
+for main_name, detail_name, code, route_x, route_y in (
+    ("US main", "Northeast detail", "NE", .474, .544),
+    ("China main", "Yangtze River Delta detail", "YRD", .944, .550),
+):
+    main_ax, detail_ax = frames[main_name], frames[detail_name]
+    west, south, east, north_bound = next(m[3] for m in MAPS if m[0] == detail_name)
+    lon = np.r_[np.linspace(west, east, 80), np.full(80, east),
+                np.linspace(east, west, 80), np.full(80, west)]
+    lat = np.r_[np.full(80, south), np.linspace(south, north_bound, 80),
+                np.full(80, north_bound), np.linspace(north_bound, south, 80)]
+    x, y = main_ax._geo[1].transform(lon, lat)
+    main_ax.add_patch(Polygon(np.column_stack([x, y]), closed=True, fill=False,
+                             edgecolor="black", linewidth=1.1, zorder=4.5))
+    label_xy = main_ax._geo[1].transform(east, north_bound)
+    main_ax.annotate(code, label_xy, xytext=(5, 5), textcoords="offset points",
+                     fontsize=8, fontweight="bold", color="black", zorder=12,
+                     bbox=dict(facecolor="white", edgecolor="none", pad=.8))
+    detail_ax.set_title(f"{code} · {detail_name}", loc="left", fontsize=8,
+                        pad=4, color="#263039")
+    for spine in detail_ax.spines.values():
+        spine.set_color("black")
+        spine.set_linewidth(1.1)
+    # No-arrow dashed leaders are graphical locators, not network connections.
+    start_xy = main_ax._geo[1].transform(east, (south + north_bound) / 2)
+    start = fig.transFigure.inverted().transform(main_ax.transData.transform(start_xy))
+    inset_box = detail_ax.get_position()
+    end = (inset_box.x1, inset_box.y1)
+    route = [start, (route_x, start[1]), (route_x, route_y),
+             (end[0], route_y), end]
+    fig.add_artist(plt.Line2D(*np.array(route).T, transform=fig.transFigure,
+                             color="#87919B", lw=.7, linestyle=(0, (3, 3)),
+                             zorder=1.5))
+    locator_records.append({"main_map": main_name, "detail_map": detail_name,
+                            "code": code, "bounds_wgs84": [west, south, east, north_bound],
+                            "connector_figure_coordinates": np.asarray(route).tolist(),
+                            "meaning": "Display window, not an administrative regional boundary"})
+
+
 # Bottom key. Node and histogram hues identify the country; line width and
 # light-to-dark shade encode weighted overlap rather than a particular SDG.
 fig.add_artist(plt.Line2D([.025, .985], [.385, .385], transform=fig.transFigure, color="#D3D9DE", lw=.65))
@@ -392,6 +434,7 @@ qa = {
     "geographic_map_edges": len(drawn_ids), "cross_inset_edges_listed": len(cross_inset),
     "panel_nodes_edges": {k: list(v) for k, v in panel_counts.items()},
     "map_frames": layout_records, "north_and_scale": scale_records,
+    "detail_locators": locator_records,
     "basemap_sha256": gis_hash,
     "figure1a_palette": {
         "NSF": [BLUE_LIGHT, BLUE_MID, BLUE_DARK],
@@ -407,7 +450,7 @@ qa = {
 stem = OUTPUT / 'Supplementary_Fig_3a_stable_Target_combination_based_institution_city_similarity_reconstructed'
 fig.savefig(stem.with_suffix(".svg"))
 fig.savefig(stem.with_suffix(".pdf"))
-fig.savefig(stem.with_suffix(".png"), dpi=300)
+fig.savefig(stem.with_suffix(".png"), dpi=600)
 fig.savefig(stem.with_suffix(".tiff"), dpi=600, pil_kwargs={"compression": "tiff_lzw"})
 plt.close(fig)
 print(stem)

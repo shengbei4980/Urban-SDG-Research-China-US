@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "locations": 478,
+  "no_locations_removed": true,
+  "panels": [
+    {
+      "agency": "NSF",
+      "locations": 352,
+      "filled": 96,
+      "open": 256,
+      "median_supply_pct": 0.07900000000000265,
+      "median_jsd_bits": 0.33953194054554636,
+      "x_limits": [
+        0.004,
+        32
+      ],
+      "y_limits": [
+        -0.22,
+        0.94
+      ],
+      "labels": [
+        "Los Angeles County, CA",
+        "New York County, NY",
+        "Middlesex County, MA",
+        "Boulder County, CO",
+        "King County, WA"
+      ]
+    },
+    {
+      "agency": "NSFC",
+      "locations": 126,
+      "filled": 40,
+      "open": 86,
+      "median_supply_pct": 0.0901550667147493,
+      "median_jsd_bits": 0.3044335391165872,
+      "x_limits": [
+        0.004,
+        32
+      ],
+      "y_limits": [
+        -0.22,
+        0.94
+      ],
+      "labels": [
+        "Beijing",
+        "Nanjing",
+        "Wuhan",
+        "Shanghai",
+        "Guangzhou"
+      ]
+    }
+  ],
+  "numeric_comparison_max_error": {
+    "source": "unchanged frozen location table"
+  },
+  "black_full_frames": true,
+  "label_overlap_count": 0,
+  "labels_outside_axes": [],
+  "points_beneath_labels": [],
+  "figure_size_mm": [
+    183,
+    106.68
+  ],
+  "raster_dpi": 600,
+  "palette": {
+    "NSF_DARK": "#003366",
+    "NSF_MID": "#7F99B2",
+    "NSFC_DARK": "#8B0000",
+    "NSFC_MID": "#C57F7F"
+  },
+  "point_alpha": 1,
+  "filled_marker_area_pt2": 12,
+  "open_marker_area_pt2": 12,
+  "regression": "OLS: JSD = intercept + slope × log10(F_pct), separately by country",
+  "confidence_intervals": "pointwise 95% Student-t mean-response confidence bands",
+  "independence": "one administrative location per point; profiles share domestic reference data",
+  "versions": {
+    "python": "3.11.5",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.8"
+  }
+}

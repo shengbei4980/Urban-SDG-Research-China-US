@@ -24,10 +24,14 @@ python redraw.py --figure 6b
 
 The available entries are `1`, `2` (legend), `3a`, `3b`, `4a`, `4b`, `5`, `6a`, `6b`, `7a`, `7b` and `8`. Map panel 3a requires the geospatial dependencies listed in `requirements.txt`. Supplementary Fig. 2 uses the retained Gephi layout. Supplementary Fig. 9 is edited in its PowerPoint source.
 
-The nine approved complete PNGs are copied byte for byte from the revised source archive and match its approved supplementary-document image hashes. Original CSV contents, column names and scientific labels are preserved. Source-panel regeneration is separate from assembling the complete publication layout. File locations, renderer entries and approved-image SHA-256 values are listed in [`figure_index.csv`](figure_index.csv).
+Eight unchanged complete PNGs retain their source-archive and supplementary-document image hashes. S3 was reassembled on 11 October 2026 from the revised map panel and the unchanged matrix panel; its current PNG and vector PDF are linked in the S3 guide. Original scientific CSV contents, column names and labels are preserved. Source-panel regeneration is separate from assembling the complete publication layout. A blank supplementary-document-image field in the index identifies a repository composite that has not been synchronized back to Word. File locations, renderer entries and approved-image SHA-256 values are listed in [`figure_index.csv`](figure_index.csv).
 
 ## Numbering update
 
 The previous source folders S2-S9 are now S1-S8. The screening and coding workflow previously uploaded under S1 is now S9, with its editable PowerPoint source. S6b uses administrative-location sensitivity results; S7a uses the revised Sankey diagrams. S8 retains the institution-city definition.
 
 Source audit notes are retained in `notes/`; some historical notes and data labels are bilingual. Local upload backups and synchronization records are kept outside this repository.
+
+## Latest graphical update
+
+S3a includes revised geographic locator windows and dashed leaders. Rebuild its complete S3 after regenerating the map with `python figure_s3/code/assemble_supplementary_fig_3.py`. This composition step requires `pypdf`, `pypdfium2`, `reportlab` and `Pillow`.

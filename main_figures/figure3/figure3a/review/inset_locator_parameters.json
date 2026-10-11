@@ -1,0 +1,70 @@
+[
+  {
+    "agency": "NSF",
+    "detail_map": "Northeast detail",
+    "code": "NE",
+    "bounds_wgs84": [
+      -75.7,
+      39.1,
+      -69.8,
+      43.2
+    ],
+    "connector_figure_coordinates": [
+      [
+        0.4286560768848331,
+        0.7832417269112673
+      ],
+      [
+        0.474,
+        0.7832417269112673
+      ],
+      [
+        0.474,
+        0.544
+      ],
+      [
+        0.20799999999999996,
+        0.544
+      ],
+      [
+        0.20799999999999996,
+        0.514
+      ]
+    ],
+    "meaning": "Display window, not an administrative regional boundary"
+  },
+  {
+    "agency": "NSFC",
+    "detail_map": "Yangtze River Delta detail",
+    "code": "YRD",
+    "bounds_wgs84": [
+      118,
+      29.6,
+      122.3,
+      33.2
+    ],
+    "connector_figure_coordinates": [
+      [
+        0.8549306658163953,
+        0.6842280313278245
+      ],
+      [
+        0.944,
+        0.6842280313278245
+      ],
+      [
+        0.944,
+        0.55
+      ],
+      [
+        0.795,
+        0.55
+      ],
+      [
+        0.795,
+        0.514
+      ]
+    ],
+    "meaning": "Display window, not an administrative regional boundary"
+  }
+]

@@ -12,7 +12,11 @@ import numpy as np
 from matplotlib.lines import Line2D
 import json
 import xml.etree.ElementTree as ET
-from build_data import ROOT,D,GOALS
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+D=ROOT/'data'
+GOALS=['S02','S03','S06','S07','S09','S10','S11','S12','S13','S15','S16','S17']
+QA=ROOT/'review/marker_revision';QA.mkdir(parents=True,exist_ok=True)
 
 O=ROOT/'figures';O.mkdir(exist_ok=True)
 PREFIX='Figure3c_cross_target_contributions_of_fixed_leading_research_locations'
@@ -27,8 +31,9 @@ def plot_advanced_forest_chart(df,scheme_id,color_list):
     unique_algos=['NSF','NSFC']
     color_map={algo:color_list[i] for i,algo in enumerate(unique_algos)}
     marker_map={'NSF':'o','NSFC':'s'}
-    fig,ax=plt.subplots(figsize=(7.2,4.05))
-    fig.subplots_adjust(left=.12,right=.95,bottom=.192,top=.773)
+    fig,ax=plt.subplots(figsize=(7.2,6.6))
+    fig.subplots_adjust(left=.12,right=.95,bottom=.145,top=.145+.83*7.2/6.6/1.35)
+    ax.set_box_aspect(1/1.35)
     y_positions=np.arange(len(GOALS))
     goal_y={g:i for i,g in enumerate(GOALS)}
     titles={};membership=[];labels=[];stems=[]
@@ -69,7 +74,7 @@ def plot_advanced_forest_chart(df,scheme_id,color_list):
     ax.tick_params(axis='x',direction='out',length=3,width=.65,color='#7E8992')
     ax.tick_params(axis='y',length=0,pad=8)
     for spine in ax.spines.values():
-        spine.set_color('#89959D');spine.set_linewidth(.65)
+        spine.set_color('#000000');spine.set_linewidth(.65)
     ax.text(50,1.025,'50% reference',transform=ax.get_xaxis_transform(),ha='center',
             va='bottom',fontsize=6.6,color='#5E6D77')
     fig.text(.028,.955,'c',fontsize=11,weight='bold')
@@ -78,7 +83,7 @@ def plot_advanced_forest_chart(df,scheme_id,color_list):
     legends=[Line2D([0],[0],marker=marker_map[a],color='none',markerfacecolor=color_map[a],
                     markeredgecolor='none',markersize=4,label=label)
         for a,label in [('NSF','NSF · counties and equivalents'),('NSFC','NSFC · prefecture-level units')]]
-    fig.legend(handles=legends,loc='center left',bbox_to_anchor=(.078,.835),frameon=False,
+    fig.legend(handles=legends,loc='center left',bbox_to_anchor=(.078,.859),frameon=False,
                fontsize=7.4,ncol=2,handletextpad=.5,columnspacing=2.6)
     fig.text(.12,.047,'Stems start at the 50% reference; positions and labels show contribution shares.',fontsize=6.6,color='#5E6D77')
     fig.text(.12,.015,'All locations enter each national denominator. NSFC SDG17: 18 project families.',fontsize=6.6,color='#5E6D77')
@@ -90,7 +95,18 @@ def plot_advanced_forest_chart(df,scheme_id,color_list):
     assert not collisions and not obscured,(collisions,obscured)
     for stem,x,y in stems:
         assert np.allclose(stem.get_segments()[0],[[REFERENCE,y],[x,y]])
-    pd.DataFrame(membership).to_csv(D/'Figure3c_plotted_point_mapping.csv',index=False,encoding='utf-8-sig')
+    assert np.isclose(ax.bbox.width/ax.bbox.height,1.35)
+    marker_checks=[]
+    for collection in ax.collections:
+        if not collection.get_paths() or not len(collection.get_transforms()):continue
+        path=collection.get_paths()[0].get_extents()
+        for transform in collection.get_transforms():
+            width=path.width*abs(transform[0,0]);height=path.height*abs(transform[1,1])
+            assert np.isclose(width/height,1,atol=1e-10)
+        marker_checks.append({'id':collection.get_gid(),'width_over_height':float(width/height)})
+    assert len(marker_checks)==48
+    (QA/'marker_aspect_verification.json').write_text(json.dumps(marker_checks,indent=2),encoding='utf-8')
+    pd.DataFrame(membership).to_csv(QA/'Figure3c_glyph_mapping.csv',index=False,encoding='utf-8-sig')
     fig.savefig(O/(PREFIX+'.svg'))
     tree=ET.parse(O/(PREFIX+'.svg'));ns='http://www.w3.org/2000/svg';tagged=0
     for node in tree.getroot().iter():
@@ -104,10 +120,10 @@ def plot_advanced_forest_chart(df,scheme_id,color_list):
     fig.savefig(O/(PREFIX+'_preview.png'),dpi=300)
     audit={'observation_count':24,'goal_count':12,'axis_range_pct':[0,100],'reference_line_pct':REFERENCE,
            'all_stem_endpoints_verified':True,'value_label_collisions':collisions,'value_labels_cover_points':obscured,
-           'size_mm':[182.88,102.87],'minimum_font_pt':6.6,'no_exclusions':True,'no_inferential_intervals':True,
+           'size_mm':[182.88,167.64],'minimum_font_pt':6.6,'no_exclusions':True,'no_inferential_intervals':True,
            'adaptation':'shared goal rows; correlations replaced by untransformed shares; central reference 50%; no significance marks',
            'template_retained':['row loop','hlines','translucent outer endpoints','solid inner endpoints','central line','boxed axes','dashed grid']}
-    (D/'layout_review.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2),encoding='utf-8')
+    (QA/'figure_layout_review.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2),encoding='utf-8')
     plt.close(fig);print(json.dumps(audit,ensure_ascii=False,indent=2))
 
 def plot():
