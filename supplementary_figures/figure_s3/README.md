@@ -1,25 +1,12 @@
-# Supplementary Fig. 3: City similarity and coverage of stable Target combinations
+# Supplementary Fig. 3: Content connections of urban needs and balanced knowledge-task differences
 
-Current complete figure: [PNG, 600 dpi](outputs/Supplementary_Fig_3.png) · [vector PDF](outputs/Supplementary_Fig_3.pdf).
+Current complete figure: [PNG](outputs/Supplementary_Fig_3.png).
 
-Panel a was revised on 11 October 2026 to show the Northeast and Yangtze River Delta locator windows and their dashed graphical leaders. The city/edge data and the geographic projections are unchanged. Panel b retains the supplied circular matrices and city-profile clustering.
-
-## Reproduction
-
-From `supplementary_figures/`:
-
-```bash
-python redraw.py --figure 3a
-python figure_s3/code/assemble_supplementary_fig_3.py
-```
-
-The assembly reads the current vector PDF exports for panels a and b, preserves their scientific marks, crops to the publication panels and exports a complete PDF plus a 600 dpi PNG. The complete figure retains the two-row, two-country arrangement. Dense matrix labels can be inspected in the vector PDF or the separate national zoom outputs.
+The complete PNG is copied byte for byte from the corresponding drawing in the current supplementary document. Its number, caption title and order follow the manuscript supplied on 14 October 2026.
 
 ## Source entries
 
-- [Map renderer](figure_s3a/code/plot_Supplementary_Fig_3a_institution_city_similarity.py)
-- [Matrix renderer](figure_s3b/code/plot_Supplementary_Fig_3b_circular_matrix_and_city_clustering_tree.py)
-- [Complete-figure assembly](code/assemble_supplementary_fig_3.py)
-- [Composition parameters and source hashes](review/composition_verification.json)
+- [plot_Supplementary_Fig_3a_four_column_vertical_alignment.py](figure_s3a/code/plot_Supplementary_Fig_3a_four_column_vertical_alignment.py)
+- [plot_Supplementary_Fig_3b_knowledge_task_differences_in_six_domains.py](figure_s3b/code/plot_Supplementary_Fig_3b_knowledge_task_differences_in_six_domains.py)
 
-The revised complete figure supersedes the earlier document-derived composite in this repository. This repository update does not edit manuscript or supplementary Word files. The document-image field for S3 in `figure_index.csv` is therefore blank.
+Source renderers regenerate component panels and supporting indices. Scientific data are retained unchanged; standalone source-panel layouts can differ from the complete publication layout.

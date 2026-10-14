@@ -1,12 +1,12 @@
-# Supplementary Fig. 6: Geographic supply concentration and support-threshold sensitivity
+# Supplementary Fig. 6: Research content and action stages at different supply positions
 
-Approved complete figure: [`outputs/Supplementary_Fig_6.png`](outputs/Supplementary_Fig_6.png).
+Current complete figure: [PNG](outputs/Supplementary_Fig_6.png).
 
-Panel b uses 352 US administrative units and 126 Chinese administrative units, compares each location with the remaining domestic locations, and applies support thresholds of 0, 10, 20 and 30. These administrative units differ from the institution cities in Supplementary Fig. 8.
+The complete PNG is copied byte for byte from the corresponding drawing in the current supplementary document. Its number, caption title and order follow the manuscript supplied on 14 October 2026.
 
 ## Source entries
 
-- [`figure_s6a/code/plot_lorenz.py`](figure_s6a/code/plot_lorenz.py)
-- [`figure_s6b/code/plot_supplementary_fig_6b.py`](figure_s6b/code/plot_supplementary_fig_6b.py)
+- [Supplementary_Fig_6a_light_palette_sankey_and_terminal_stage_groups.py](figure_s6a/code/Supplementary_Fig_6a_light_palette_sankey_and_terminal_stage_groups.py)
+- [Supplementary_Fig_6b_discrete_mirrored_ridgelines_reconstructed.py](figure_s6b/code/Supplementary_Fig_6b_discrete_mirrored_ridgelines_reconstructed.py)
 
-Source renderers export panels and, where applicable, supporting legends or indices. Their layout can differ from the approved complete composite. They do not overwrite the approved complete figure.
+Source renderers regenerate component panels and supporting indices. Scientific data are retained unchanged; standalone source-panel layouts can differ from the complete publication layout.

@@ -3,13 +3,13 @@ pandas
 matplotlib
 scipy
 Pillow
-# Geospatial dependencies for map panel 3a
+# Geospatial dependencies for map panel 2a
 geopandas
 pyproj
 shapely
 pyogrio
 
-# Complete S3 vector assembly
+# Source S2 vector assembly
 pypdf
 pypdfium2
 reportlab

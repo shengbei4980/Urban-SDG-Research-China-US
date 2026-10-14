@@ -152,7 +152,7 @@ yr=map_axis([.545,.399,.250,.115],[118,29.6,122.3,33.2],'+proj=aea +lat_1=29 +la
 for unit,offset in {'320100':(.035,.73),'310000':(.72,.43),'330100':(.04,.14)}.items():ranked_label(yr,unit,offset,'Yangtze inset','axes fraction')
 sc=map_axis([.817,.399,.153,.115],[105,3.5,123,24],'+proj=aea +lat_1=5 +lat_2=25 +lat_0=15 +lon_0=114 +datum=WGS84 +units=m','NSFC','South China Sea',True)
 
-# Match the locator convention used in Supplementary Fig. 3a. These are
+# Match the locator convention used in Supplementary Fig. 2a. These are
 # geographic display windows, not administrative regional boundaries.
 locator_records=[]
 fig.canvas.draw()

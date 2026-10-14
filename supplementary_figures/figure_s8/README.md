@@ -1,11 +1,11 @@
-# Supplementary Fig. 8: City-level research supply and alignment contributions
+# Supplementary Fig. 8: Annual changes in research content and target coverage
 
-Approved complete figure: [`outputs/Supplementary_Fig_8.png`](outputs/Supplementary_Fig_8.png).
+Current complete figure: [PNG](outputs/Supplementary_Fig_8.png).
 
-The renderer reads the approved local result tables and verifies 525 NSF institution cities and 128 NSFC institution cities. These units differ from the administrative locations in Supplementary Fig. 6b.
+The complete PNG is copied byte for byte from the corresponding drawing in the current supplementary document. Its number, caption title and order follow the manuscript supplied on 14 October 2026.
 
 ## Source entries
 
-- [`plotting_project/code/plot_source_unified_palette.py`](plotting_project/code/plot_source_unified_palette.py)
+- [plot_supplementary_fig_8.py](plotting_project/code/plot_supplementary_fig_8.py)
 
-Source renderers export panels and, where applicable, supporting legends or indices. Their layout can differ from the approved complete composite. They do not overwrite the approved complete figure.
+Source renderers regenerate component panels and supporting indices. Scientific data are retained unchanged; standalone source-panel layouts can differ from the complete publication layout.

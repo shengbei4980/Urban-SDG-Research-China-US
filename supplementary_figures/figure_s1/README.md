@@ -1,11 +1,11 @@
-# Supplementary Fig. 1: Annual changes in research content and SDG Target coverage
+# Supplementary Fig. 1: Target co-occurrence in urban SDG research
 
-Approved complete figure: [`outputs/Supplementary_Fig_1.png`](outputs/Supplementary_Fig_1.png).
+Current complete figure: [PNG](outputs/Supplementary_Fig_1.png).
 
-The renderer reads the supplied annual results, semantic composition and code mapping; it does not rerun the bootstrap analysis.
+The complete PNG is copied byte for byte from the corresponding drawing in the current supplementary document. Its number, caption title and order follow the manuscript supplied on 14 October 2026.
 
 ## Source entries
 
-- [`plotting_project/code/plot_supplementary_fig_1.py`](plotting_project/code/plot_supplementary_fig_1.py)
+- [build_Supplementary_Fig_1_exact_legend.py](plotting_project/legend/code/build_Supplementary_Fig_1_exact_legend.py)
 
-Source renderers export panels and, where applicable, supporting legends or indices. Their layout can differ from the approved complete composite. They do not overwrite the approved complete figure.
+Source renderers regenerate component panels and supporting indices. Scientific data are retained unchanged; standalone source-panel layouts can differ from the complete publication layout.
