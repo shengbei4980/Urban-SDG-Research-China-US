@@ -1,11 +1,12 @@
-# Supplementary Fig. 9: Overall supply and aligned contributions of research-hosting cities
+# Supplementary Fig. 9: Research content and action stages at different supply positions
 
 Current complete figure: [PNG](outputs/Supplementary_Fig_9.png).
 
-The complete PNG is copied byte for byte from the corresponding drawing in the current supplementary document. Its number, caption title and order follow the manuscript supplied on 14 October 2026.
+The figure number and complete image follow the SB-10.30 manuscript and supplementary document. The PNG is retained byte for byte from the supplied figure file.
 
 ## Source entries
 
-- [plot_source_unified_palette.py](plotting_project/code/plot_source_unified_palette.py)
+- [Supplementary_Fig_9a_light_palette_sankey_and_terminal_stage_groups.py](figure_s9a/code/Supplementary_Fig_9a_light_palette_sankey_and_terminal_stage_groups.py)
+- [Supplementary_Fig_9b_discrete_mirrored_ridgelines_reconstructed.py](figure_s9b/code/Supplementary_Fig_9b_discrete_mirrored_ridgelines_reconstructed.py)
 
-Source renderers regenerate component panels and supporting indices. Scientific data are retained unchanged; standalone source-panel layouts can differ from the complete publication layout.
+Component-panel renderers can include supporting legends or indices and can have a different layout from the complete figure. Scientific datasets are preserved unchanged.
